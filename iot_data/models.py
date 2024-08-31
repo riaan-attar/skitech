@@ -10,3 +10,4 @@ class Iot_data(models.Model):
     nitrogen = models.DecimalField(max_digits=10, decimal_places=2)
     phosphorus = models.DecimalField(max_digits=10, decimal_places=2)
     potassium = models.DecimalField(max_digits=10, decimal_places=2)
+    ph = models.DecimalField(max_length = 10,decimal_places=2 )

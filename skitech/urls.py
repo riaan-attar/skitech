@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from user import views as u
+from soil_analysis import views as s
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,9 @@ urlpatterns = [
     path('login/', u.login_view, name = 'login'),
     path('signup/',u.signup_view,name ='signup'),
     path('logout/',u.logout_view,name = 'logout_view'),
+    path('disease_info/',s.disease_info, name = 'diseaseInfo'),
+    path('crop_recommendation',s.crop_recommendation,name = 'cropRecommendation'),
+    path('soil_analysis',s.soil_analysis,name = "soilAnalysis")
 
 
 
