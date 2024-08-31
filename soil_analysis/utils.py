@@ -35,7 +35,7 @@ class_labels = [
 path_model = r"soil_analysis\01_plant_diseases_classification_pytorch_rn50.pth"
 model = resnet50(weights=None)
 model.fc = nn.Sequential(nn.Linear(in_features=model.fc.in_features, out_features=len(class_labels)))
-model.load_state_dict(torch.load(path_model))
+model.load_state_dict(torch.load(path_model,map_location=torch.device('cpu')))
 
 
 model.eval()

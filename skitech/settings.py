@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'user',
     'iot_data',
     'soil_analysis',
+    'inventory',
+    'market',
 ]
 
 MIDDLEWARE = [
