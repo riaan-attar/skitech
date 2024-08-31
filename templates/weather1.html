@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+
+    
+
+    <!-- State Selection Section -->
+    <section class="py-8">
+        <div class="container mx-auto">
+            <div class="bg-green-600 p-8 rounded-lg shadow-lg text-center">
+                <button class="bg-yellow-400 text-black px-4 py-2 rounded-full shadow-lg mb-4">Select your
+                    state</button>
+                <div class="flex justify-center space-x-4">
+                    <select class="p-2 rounded bg-white text-black shadow-md">
+                        <option>Select State</option>
+
+                    </select>
+                    <select class="p-2 rounded bg-white text-black shadow-md">
+                        <option>Select APMC's</option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Forecast Section -->
+    <section class="py-8">
+        <div class="container mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-bold text-center">Today's Weather Forecast</h2>
+
+                <div class="container mx-auto p-6 mt-4 bg-white shadow-lg rounded-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Weather Block -->
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                            <img src="cloud-icon.png" alt="Weather Icon" class="w-16 h-16">
+                            <div class="text-4xl font-bold mt-2">29°C/23°C</div>
+                            <div class="text-gray-600 mt-2">Partly cloudy with chances of rain.</div>
+                        </div>
+
+                        <!-- Humidity and Sunrise/Sunset Block -->
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Humidity at 8:30 AM:</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <span class="text-gray-600">Humidity at 5:30 PM:</span>
+                                <span>null%</span>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <span class="text-gray-600">Sunrise Time:</span>
+                                <span>06:19</span>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <span class="text-gray-600">Sunset Time:</span>
+                                <span>18:51</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7-Day Forecast Section -->
+                <div class="container mx-auto p-6 mt-4 bg-white shadow-lg rounded-lg">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                        <!-- Repeat this block for each day -->
+                        <div class="text-center bg-white p-4 rounded-lg shadow-md">
+                            <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
+                            <div class="font-semibold">Monday</div>
+                            <div class="text-gray-600">28°C/22°C</div>
+                            <div class="text-gray-600">Rain or thundershowers</div>
+                        </div>
+                        <div class="text-center bg-white p-4 rounded-lg shadow-md">
+                            <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
+                            <div class="font-semibold">Tuesday</div>
+                            <div class="text-gray-600">29°C/22°C</div>
+                            <div class="text-gray-600">Rain expected</div>
+                        </div>
+                        <div class="text-center bg-white p-4 rounded-lg shadow-md">
+                            <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
+                            <div class="font-semibold">Wednesday</div>
+                            <div class="text-gray-600">29°C/22°C</div>
+                            <div class="text-gray-600">Partly cloudy</div>
+                        </div>
+                        <div class="text-center bg-white p-4 rounded-lg shadow-md">
+                            <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
+                            <div class="font-semibold">Thursday</div>
+                            <div class="text-gray-600">29°C/22°C</div>
+                            <div class="text-gray-600">Scattered showers</div>
+                        </div>
+                        <div class="text-center bg-white p-4 rounded-lg shadow-md">
+                            <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
+                            <div class="font-semibold">Friday</div>
+                            <div class="text-gray-600">29°C/22°C</div>
+                            <div class="text-gray-600">Sunny intervals</div>
+                        </div>
+                        <div class="text-center bg-white p-4 rounded-lg shadow-md">
+                            <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
+                            <div class="font-semibold">Saturday</div>
+                            <div class="text-gray-600">29°C/22°C</div>
+                            <div class="text-gray-600">Clear skies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>© 2024 Department of Agriculture & Farmers Welfare, Government of India. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
