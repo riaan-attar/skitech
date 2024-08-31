@@ -44,3 +44,12 @@ def vendor_orders(request):
 
     return render(request, 'vendor_orders.html', {'orders': orders})
 
+<<<<<<< HEAD
+# Create your views here.
+def market(request):
+    return render(request, 'marketplace.html')
+
+def mandi(request):
+    return render(request, 'mandi.html')
+=======
+>>>>>>> f40bbd4ae679fec88f986f9431eedf9deedb78c0

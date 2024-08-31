@@ -58,6 +58,12 @@ def weather_view(request):
     }
     return render(request, 'weather.html', context)
 
+def vendor_dashboard(request):
+    return render(request, 'vendordash.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
 @login_required
 def add_to_cart(request, item_id):
     market_item = Market.objects.get(id=item_id)
@@ -102,4 +108,3 @@ def place_order(request):
 def order_list(request):
     orders = Order.objects.filter(user=request.user)
     return render(request, 'order_list.html', {'orders': orders})
-
