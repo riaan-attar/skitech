@@ -49,3 +49,9 @@ def logout_view(request):
     logout(request)
     return redirect('landing')
 
+WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
+def weather_view(request):
+    context = {
+        'weather_api_key': WEATHER_API_KEY,
+    }
+    return render(request, 'weather.html', context)

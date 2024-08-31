@@ -30,8 +30,6 @@ urlpatterns = [
     path('soil_analysis',s.soil_analysis,name = "soilAnalysis"),
     path('recive_data/',i.receive_data,name = 'recieveData'),
     path('display_data',i.display_data,name ='displayData'),
-    
-
-
+    path('weather/',u.weather_view,name = 'weather'),
 
 ]

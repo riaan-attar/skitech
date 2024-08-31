@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Update</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container-fluid py-4 px-5">
+        <div class="container mt-4">
+            <h4 class="mb-2 text-center">Weather Forecast</h4>
+            <div id="weather-info" class="p-4 bg-white shadow rounded">
+                <!-- Weather content will be dynamically injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+    <!-- Script to fetch weather data -->
+    <script>
+        const apiKey = "{{ weather_api_key }}";
+        const baseUrl = "http://api.weatherapi.com/v1";
+    
+        // Function to fetch weather data
+        function fetchWeather(lat, lon) {
+            const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${lat},${lon}&days=7`;
+    
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // For debugging
+                    displayWeather(data);
+                })
+                .catch(error => console.error('Error fetching weather data:', error));
+        }
+    
+        // Function to display weather data
+        function displayWeather(data) {
+            const locationName = data.location.name;
+            const current = data.current;
+            const forecast = data.forecast.forecastday;
+    
+            const weatherHtml = `
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h5 class="mb-3">APMC Name: ${locationName}</h5>
+                        <h5 class="mb-3">Today ${current.temp_c}°C / ${current.feelslike_c}°C</h5>
+                        <p>${current.condition.text}</p>
+                        <p>Humidity: ${current.humidity}%</p>
+                        <p>Sunrise Time: ${forecast[0].astro.sunrise}</p>
+                        <p>Sunset Time: ${forecast[0].astro.sunset}</p>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    ${forecast.slice(1).map(day => `
+                        <div class="col-md-2 text-center">
+                            <img src="${day.day.condition.icon}" alt="${day.day.condition.text}" class="img-fluid mb-2">
+                            <p>${day.date}</p>
+                            <p>${day.day.avgtemp_c}°C / ${day.day.mintemp_c}°C</p>
+                            <p>${day.day.condition.text}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+    
+            document.getElementById('weather-info').innerHTML = weatherHtml;
+        }
+    
+        // Get user's location and fetch weather data
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    fetchWeather(lat, lon);
+                },
+                error => console.error('Error getting location:', error)
+            );
+        } else {
+            console.error('Geolocation is not supported by this browser.');
+        }
+    </script>    
+</body>
+</html>
