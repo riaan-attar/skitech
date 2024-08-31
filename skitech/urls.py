@@ -40,4 +40,12 @@ urlpatterns = [
     path('dashboard/',u.dashboard,name='dashboard'),
     path('market/',m.market,name='market'),
     path('mandi/',m.mandi,name='mandi'),
+    path('add_market_item/',m.add_market_item,name = 'add_market_item'),
+    path('market_list/',m.market_list,name = 'market_list'),
+    path('add_to_cart/',u.add_to_cart,name='add_to_cart'),
+    path('cart/',u.cart_list,name='cart'),
+    path('delete_cart/',u.remove_from_cart,name= 'remove_from_cart'),
+    path('vendor_order/',m.vendor_orders,name = 'vendor_order'),
+    path('order_list',u.order_list,name = 'order_list'),
+    path('place_order/',u.place_order,name ='place_order'),
 ]

@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth import authenticate,login,logout
-from .models import CustomUser
+from .models import *
 from django.contrib.auth.decorators import login_required
 import os
+from market.models import *
 def landing(request):
     return render(request,'index.html')
 
@@ -62,3 +63,48 @@ def vendor_dashboard(request):
 
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+@login_required
+def add_to_cart(request, item_id):
+    market_item = Market.objects.get(id=item_id)
+    cart_item, created = Cart.objects.get_or_create(
+        user=request.user,
+        market_item=market_item,
+        defaults={'quantity': 1}
+    )
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+    return redirect('cart_list')
+
+@login_required
+def remove_from_cart(request, item_id):
+    cart_item = Cart.objects.get(id=item_id, user=request.user)
+    if cart_item:
+        cart_item.delete()
+    return redirect('cart_list')
+
+
+@login_required
+def cart_list(request):
+    cart_items = Cart.objects.filter(user=request.user)
+    return render(request, 'cart_list.html', {'cart_items': cart_items})
+
+@login_required
+def place_order(request):
+    cart_items = Cart.objects.filter(user=request.user)
+    if cart_items.exists():
+        for item in cart_items:
+            Order.objects.create(
+                user=request.user,
+                market_item=item.market_item,
+                quantity=item.quantity
+            )
+        cart_items.delete()  
+        return redirect('order_list')  
+    return redirect('cart_list')  
+
+@login_required
+def order_list(request):
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'order_list.html', {'orders': orders})
