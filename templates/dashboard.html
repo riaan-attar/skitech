@@ -1,25 +1,25 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../static/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../static/assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
   <title>
     Dashboard - KHETIGURU.AI
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="../static/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/349ee9c857.js" crossorigin="anonymous"></script>
-  <link href="../static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="../static/assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <link id="pagestyle" href="{% static 'assets/css/corporate-ui-dashboard.css' %}?v=1.0.0" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -186,7 +186,7 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../static/assets/img/team-2.jpg" class="avatar avatar-sm border-radius-sm  me-3 ">
+                        <img src="{% static 'assets/img/team-2.jpg' %}" class="avatar avatar-sm border-radius-sm  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -204,7 +204,7 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../static/assets/img/small-logos/logo-google.svg" class="avatar avatar-sm border-radius-sm bg-gradient-dark p-2  me-3 ">
+                        <img src="{% static 'assets/img/small-logos/logo-google.svg' %}" class="avatar avatar-sm border-radius-sm bg-gradient-dark p-2  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -252,7 +252,7 @@
             </li>
             <li class="nav-item ps-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0">
-                <img src="../static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar" />
+                <img src="{% static 'assets/img/team-2.jpg' %}" class="avatar avatar-sm" alt="avatar" />
               </a>
             </li>
           </ul>
@@ -523,7 +523,7 @@
 </div>
 <style>
   .btn-close {
-    background- color:black;
+    background-color:black;
     border: none;
 }
 
@@ -572,7 +572,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div class="d-flex align-items-center">
-                            <img src="../static/assets/img/team-2.jpg" class="avatar avatar-sm rounded-circle me-2" alt="user1">
+                            <img src="{% static 'assets/img/team-2.jpg' %}" class="avatar avatar-sm rounded-circle me-2" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center ms-1">
                             <h6 class="mb-0 text-sm font-weight-semibold">RICE</h6>
@@ -872,7 +872,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the examp/templates etc -->
-  <script src="../static/assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
+  <script src="{% static 'assets/js/corporate-ui-dashboard.min.js' %}?v=1.0.0"></script>
 </body>
 
 </html>

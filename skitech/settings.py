@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
+    'iot_data',
+    'soil_analysis',
+    'inventory',
+    'market',
 ]
 
 MIDDLEWARE = [
