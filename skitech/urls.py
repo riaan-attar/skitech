@@ -21,6 +21,7 @@ from soil_analysis import views as s
 from iot_data import views as i
 from inventory import views as n 
 from market import views as m
+from news import views as e
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', u.landing, name = 'landing'),
@@ -44,5 +45,7 @@ urlpatterns = [
     path('vendor_order/',m.vendor_orders,name = 'vendor_order'),
     path('order_list',u.order_list,name = 'order_list'),
     path('place_order/',u.place_order,name ='place_order'),
+    path('headline_list/', e.headlines_list, name='headline_list'),
+
     
 ]
