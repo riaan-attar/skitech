@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
   <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
   <title>
-    Dashboard - KHETIGURU.AI
+    Crop Recomendation
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700" rel="stylesheet" />
@@ -51,7 +51,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'crop_recommendation' %}">
+          <a class="nav-link active" href="{% url 'cropRecommendation' %}"></a>
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g id="table" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -68,7 +68,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="{% url 'disease_info' %}">
+          <a class="nav-link  " href="{% url 'diseaseInfo' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g id="wallet" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -83,7 +83,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="{% url 'market_place' %}">
+          <a class="nav-link " href="{% url 'market' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g id="rtl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -149,7 +149,7 @@
           </a>
         </li>
         <li class="nav-item border-start my-0 pt-2">
-          <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'logout' %}">
+          <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'login' %}">
             <span class="nav-link-text ms-1">Logout</span>
           </a>
         </li>
@@ -302,7 +302,7 @@
         </div>
       </div>
       <div class="text-center">
-        <a href="{% url 'crop_recommendation' %}" class="btn btn-primary">Get Recommendation</a>
+        <a href="{% url 'cropRecommendation' %}" class="btn btn-primary">Get Recommendation</a>
     </div>
     
       <div class="container mt-4">

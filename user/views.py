@@ -56,3 +56,9 @@ def weather_view(request):
         'weather_api_key': WEATHER_API_KEY,
     }
     return render(request, 'weather.html', context)
+
+def vendor_dashboard(request):
+    return render(request, 'vendordash.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
