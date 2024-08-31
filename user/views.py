@@ -2,8 +2,9 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth import authenticate,login,logout
 from .models import CustomUser
 from django.contrib.auth.decorators import login_required
+import os
 def landing(request):
-    return render(request,'#')
+    return render(request,'index.html')
 
 def signup_view(request):
     if request.method == 'POST':
@@ -24,7 +25,7 @@ def signup_view(request):
         )
         login(request,user)
         return redirect('login_view')
-    return render(request,'#')
+    return render(request,'sign-up.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -39,9 +40,9 @@ def login_view(request):
             elif user.role == CustomUser.VENDOR:
                 return redirect('vendor_dashboard')  # Redirect to vendor's dashboard
         else:
-            return render(request, 'login.html', {'error': 'Invalid username or password'})
+            return render(request, 'sign-in.html', {'error': 'Invalid username or password'})
 
-    return render(request, 'login.html')
+    return render(request, 'sign-in.html')
 
         
 @login_required        
