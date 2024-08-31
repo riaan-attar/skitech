@@ -34,8 +34,5 @@ urlpatterns = [
     path('add_inventory/',n.add_inventory,name ='addinventory'),
     path('display_inventory/',n.inventory_list,name ='inventory_list'),
     path('delete/',n.delete_inventory,name ='delete'),
-
-
-
-
+    path('weather/',u.weather_view,name = 'weather'),
 ]
