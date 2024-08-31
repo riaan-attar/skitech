@@ -19,6 +19,7 @@ from django.urls import path
 from user import views as u
 from soil_analysis import views as s
 from iot_data import views as i
+from inventory import views as n 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', u.landing, name = 'landing'),
@@ -30,7 +31,10 @@ urlpatterns = [
     path('soil_analysis',s.soil_analysis,name = "soilAnalysis"),
     path('recive_data/',i.receive_data,name = 'recieveData'),
     path('display_data',i.display_data,name ='displayData'),
-    
+    path('add_inventory/',n.add_inventory,name ='addinventory'),
+    path('display_inventory/',n.inventory_list,name ='inventory_list'),
+    path('delete/',n.delete_inventory,name ='delete'),
+
 
 
 
