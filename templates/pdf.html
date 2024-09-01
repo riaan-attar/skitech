@@ -175,7 +175,7 @@
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="{% url 'soilAnalysis' %}">
+            <a class="nav-link active " href="{% url 'soilAnalysis' %}">
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                 <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>rtl</title>
@@ -440,13 +440,10 @@
                <button type="submit" class="btn btn-primary">Submit</button>
            </form>
          </div>
-         <div class="container mt-4">
-           <div class="row">
-               <!-- First Column: Predicted Disease Image and Text -->
-                   </div>
-               </div>
-           </div>
-       </div>
+        <div class="container mt-4">
+          <h1 style="font-size: 28px;">Response:</h1>
+          <p id="response-text" class="lead">{{ context |linebreaksbr }}</p>
+        </div>
    
        <!-- Bootstrap JS and dependencies -->
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -509,6 +506,8 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the examp/templates etc -->
   <script src="{% static 'assets/js/corporate-ui-dashboard.min.js?v=1.0.0' %}"></script>
+  <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
+<script src="https://mediafiles.botpress.cloud/1a7a7072-c1fb-4755-859a-a82cb9c017e8/webchat/v2.1/config.js"></script>
 </body>
 
 </html>
