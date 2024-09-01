@@ -11,7 +11,9 @@
     Dashboard - KHETIGURU.AI
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700"
+    rel="stylesheet" />
   <!-- Nucleo Icons -->
   <link href="../static/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../static/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -25,48 +27,55 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start" id="sidenav-main" > 
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start" id="sidenav-main">
     <style>
       /* For Chrome, Safari, and other WebKit browsers */
       #sidenav-main {
-    overflow-x: hidden; /* Disable horizontal scrolling */
-    overflow-y: auto; /* Allow vertical scrolling */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
-    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer 10+ */
-}
+        overflow-x: hidden;
+        /* Disable horizontal scrolling */
+        overflow-y: auto;
+        /* Allow vertical scrolling */
+        scrollbar-width: none;
+        /* Hide scrollbar in Firefox */
+        -ms-overflow-style: none;
+        /* Hide scrollbar in Internet Explorer 10+ */
+      }
 
-/* Hide the scrollbars in WebKit browsers (Chrome, Safari) */
-#sidenav-main::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-}
+      /* Hide the scrollbars in WebKit browsers (Chrome, Safari) */
+      #sidenav-main::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+      }
 
-/* Ensure the content within the sidebar fits within its width */
-#sidenav-main * {
-    max-width: 100%;
-    box-sizing: border-box; /* Ensure padding/margin don't cause overflow */
-}
-::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-}
+      /* Ensure the content within the sidebar fits within its width */
+      #sidenav-main * {
+        max-width: 100%;
+        box-sizing: border-box;
+        /* Ensure padding/margin don't cause overflow */
+      }
 
-::-webkit-scrollbar-thumb {
-    background: transparent;
-}
+      ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
 
-::-webkit-scrollbar-track {
-    background: transparent;
-}
+      ::-webkit-scrollbar-thumb {
+        background: transparent;
+      }
 
-/* For Firefox */
-* {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      /* For Firefox */
+      * {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
     </style>
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand d-flex align-items-center m-0" href=" {% url 'dashboard' %} " target="_blank">
         <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="logo-image">
         <span class="font-weight-bold text-lg">KRISHIDOOT</span>
@@ -77,13 +86,20 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'dashboard' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>dashboard</title>
                 <g id="dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g id="template" transform="translate(12.000000, 12.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                    <path class="color-foreground" d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 L24,5.14285714 C24,6.08962286 23.2325143,6.85714286 22.2857143,6.85714286 L1.71428571,6.85714286 C0.76752,6.85714286 0,6.08962286 0,5.14285714 L0,1.71428571 Z" id="Path"></path>
-                    <path class="color-background" d="M0,12 C0,11.0532171 0.76752,10.2857143 1.71428571,10.2857143 L12,10.2857143 C12.9468,10.2857143 13.7142857,11.0532171 13.7142857,12 L13.7142857,22.2857143 C13.7142857,23.2325143 12.9468,24 12,24 L1.71428571,24 C0.76752,24 0,23.2325143 0,22.2857143 L0,12 Z" id="Path"></path>
-                    <path class="color-background" d="M18.8571429,10.2857143 C17.9103429,10.2857143 17.1428571,11.0532171 17.1428571,12 L17.1428571,22.2857143 C17.1428571,23.2325143 17.9103429,24 18.8571429,24 L22.2857143,24 C23.2325143,24 24,23.2325143 24,22.2857143 L24,12 C24,11.0532171 23.2325143,10.2857143 22.2857143,10.2857143 L18.8571429,10.2857143 Z" id="Path"></path>
+                    <path class="color-foreground"
+                      d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 L24,5.14285714 C24,6.08962286 23.2325143,6.85714286 22.2857143,6.85714286 L1.71428571,6.85714286 C0.76752,6.85714286 0,6.08962286 0,5.14285714 L0,1.71428571 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M0,12 C0,11.0532171 0.76752,10.2857143 1.71428571,10.2857143 L12,10.2857143 C12.9468,10.2857143 13.7142857,11.0532171 13.7142857,12 L13.7142857,22.2857143 C13.7142857,23.2325143 12.9468,24 12,24 L1.71428571,24 C0.76752,24 0,23.2325143 0,22.2857143 L0,12 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M18.8571429,10.2857143 C17.9103429,10.2857143 17.1428571,11.0532171 17.1428571,12 L17.1428571,22.2857143 C17.1428571,23.2325143 17.9103429,24 18.8571429,24 L22.2857143,24 C23.2325143,24 24,23.2325143 24,22.2857143 L24,12 C24,11.0532171 23.2325143,10.2857143 22.2857143,10.2857143 L18.8571429,10.2857143 Z"
+                      id="Path"></path>
                   </g>
                 </g>
               </svg>
@@ -94,14 +110,23 @@
         <li class="nav-item">
           <a class="nav-link  " href="{% url 'cropRecommendation' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>table</title>
                 <g id="table" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g id="view-grid" transform="translate(12.000000, 12.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                    <path class="color-foreground" d="M3.42857143,0 C1.53502286,0 0,1.53502286 0,3.42857143 L0,6.85714286 C0,8.75069143 1.53502286,10.2857143 3.42857143,10.2857143 L6.85714286,10.2857143 C8.75069143,10.2857143 10.2857143,8.75069143 10.2857143,6.85714286 L10.2857143,3.42857143 C10.2857143,1.53502286 8.75069143,0 6.85714286,0 L3.42857143,0 Z" id="Path"></path>
-                    <path class="color-background" d="M3.42857143,13.7142857 C1.53502286,13.7142857 0,15.2492571 0,17.1428571 L0,20.5714286 C0,22.4650286 1.53502286,24 3.42857143,24 L6.85714286,24 C8.75069143,24 10.2857143,22.4650286 10.2857143,20.5714286 L10.2857143,17.1428571 C10.2857143,15.2492571 8.75069143,13.7142857 6.85714286,13.7142857 L3.42857143,13.7142857 Z" id="Path"></path>
-                    <path class="color-background" d="M13.7142857,3.42857143 C13.7142857,1.53502286 15.2492571,0 17.1428571,0 L20.5714286,0 C22.4650286,0 24,1.53502286 24,3.42857143 L24,6.85714286 C24,8.75069143 22.4650286,10.2857143 20.5714286,10.2857143 L17.1428571,10.2857143 C15.2492571,10.2857143 13.7142857,8.75069143 13.7142857,6.85714286 L13.7142857,3.42857143 Z" id="Path"></path>
-                    <path class="color-foreground" d="M13.7142857,17.1428571 C13.7142857,15.2492571 15.2492571,13.7142857 17.1428571,13.7142857 L20.5714286,13.7142857 C22.4650286,13.7142857 24,15.2492571 24,17.1428571 L24,20.5714286 C24,22.4650286 22.4650286,24 20.5714286,24 L17.1428571,24 C15.2492571,24 13.7142857,22.4650286 13.7142857,20.5714286 L13.7142857,17.1428571 Z" id="Path"></path>
+                    <path class="color-foreground"
+                      d="M3.42857143,0 C1.53502286,0 0,1.53502286 0,3.42857143 L0,6.85714286 C0,8.75069143 1.53502286,10.2857143 3.42857143,10.2857143 L6.85714286,10.2857143 C8.75069143,10.2857143 10.2857143,8.75069143 10.2857143,6.85714286 L10.2857143,3.42857143 C10.2857143,1.53502286 8.75069143,0 6.85714286,0 L3.42857143,0 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M3.42857143,13.7142857 C1.53502286,13.7142857 0,15.2492571 0,17.1428571 L0,20.5714286 C0,22.4650286 1.53502286,24 3.42857143,24 L6.85714286,24 C8.75069143,24 10.2857143,22.4650286 10.2857143,20.5714286 L10.2857143,17.1428571 C10.2857143,15.2492571 8.75069143,13.7142857 6.85714286,13.7142857 L3.42857143,13.7142857 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M13.7142857,3.42857143 C13.7142857,1.53502286 15.2492571,0 17.1428571,0 L20.5714286,0 C22.4650286,0 24,1.53502286 24,3.42857143 L24,6.85714286 C24,8.75069143 22.4650286,10.2857143 20.5714286,10.2857143 L17.1428571,10.2857143 C15.2492571,10.2857143 13.7142857,8.75069143 13.7142857,6.85714286 L13.7142857,3.42857143 Z"
+                      id="Path"></path>
+                    <path class="color-foreground"
+                      d="M13.7142857,17.1428571 C13.7142857,15.2492571 15.2492571,13.7142857 17.1428571,13.7142857 L20.5714286,13.7142857 C22.4650286,13.7142857 24,15.2492571 24,17.1428571 L24,20.5714286 C24,22.4650286 22.4650286,24 20.5714286,24 L17.1428571,24 C15.2492571,24 13.7142857,22.4650286 13.7142857,20.5714286 L13.7142857,17.1428571 Z"
+                      id="Path"></path>
                   </g>
                 </g>
               </svg>
@@ -112,12 +137,17 @@
         <li class="nav-item">
           <a class="nav-link  " href="{% url 'diseaseInfo' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>wallet</title>
                 <g id="wallet" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
-                    <path class="color-background" d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z" id="Path" fill-rule="nonzero"></path>
-                    <path class="color-foreground" d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z" id="Shape"></path>
+                    <path class="color-background"
+                      d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z"
+                      id="Path" fill-rule="nonzero"></path>
+                    <path class="color-foreground"
+                      d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z"
+                      id="Shape"></path>
                   </g>
                 </g>
               </svg>
@@ -128,13 +158,20 @@
         <li class="nav-item">
           <a class="nav-link  " href="{% url 'market' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>rtl</title>
                 <g id="rtl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g id="menu-alt-3" transform="translate(12.000000, 14.000000)" fill="#FFFFFF">
-                    <path class="color-foreground" d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z" id="Path"></path>
-                    <path class="color-background" d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z" id="Path"></path>
-                    <path class="color-background" d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z" id="Path"></path>
+                    <path class="color-foreground"
+                      d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z"
+                      id="Path"></path>
                   </g>
                 </g>
               </svg>
@@ -145,13 +182,20 @@
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'mandi' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>rtl</title>
                 <g id="rtl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g id="menu-alt-3" transform="translate(12.000000, 14.000000)" fill="#FFFFFF">
-                    <path class="color-foreground" d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z" id="Path"></path>
-                    <path class="color-background" d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z" id="Path"></path>
-                    <path class="color-background" d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z" id="Path"></path>
+                    <path class="color-foreground"
+                      d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z"
+                      id="Path"></path>
                   </g>
                 </g>
               </svg>
@@ -162,13 +206,20 @@
         <li class="nav-item">
           <a class="nav-link " href="{% url 'weather' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>rtl</title>
                 <g id="rtl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g id="menu-alt-3" transform="translate(12.000000, 14.000000)" fill="#FFFFFF">
-                    <path class="color-foreground" d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z" id="Path"></path>
-                    <path class="color-background" d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z" id="Path"></path>
-                    <path class="color-background" d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z" id="Path"></path>
+                    <path class="color-foreground"
+                      d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z"
+                      id="Path"></path>
                   </g>
                 </g>
               </svg>
@@ -179,13 +230,20 @@
         <li class="nav-item">
           <a class="nav-link " href="{% url 'soilAnalysis' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>rtl</title>
                 <g id="rtl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g id="menu-alt-3" transform="translate(12.000000, 14.000000)" fill="#FFFFFF">
-                    <path class="color-foreground" d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z" id="Path"></path>
-                    <path class="color-background" d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z" id="Path"></path>
-                    <path class="color-background" d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z" id="Path"></path>
+                    <path class="color-foreground"
+                      d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z"
+                      id="Path"></path>
+                    <path class="color-background"
+                      d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z"
+                      id="Path"></path>
                   </g>
                 </g>
               </svg>
@@ -195,8 +253,11 @@
         </li>
         <li class="nav-item mt-2">
           <div class="d-flex align-items-center nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ms-2" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-              <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ms-2" viewBox="0 0 24 24"
+              fill="currentColor" class="w-6 h-6">
+              <path fill-rule="evenodd"
+                d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                clip-rule="evenodd" />
             </svg>
             <span class="font-weight-normal text-md ms-2">Account Pages</span>
           </div>
@@ -220,91 +281,123 @@
       <div class="center-container">
         <a href="{% url 'logout_view' %}" class="nav-link position-relative ms-0 py-2 ps-2">
           <button class="Btn">
-            <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+            <div class="sign"><svg viewBox="0 0 512 512">
+                <path
+                  d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                </path>
+              </svg></div>
             <div class="text">Logout</div>
           </button>
         </a>
         <style>
-          /* From Uiverse.io by Lealdos */ 
-        /* From Uiverse.io by TomMussard */ 
-        .Btn {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          width: 45px;
-          height: 45px;
-          border: none;
-          border-radius: 50%;
-          cursor: pointer;
-          position: relative;
-          overflow: hidden;
-          transition-duration: .3s;
-          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-          background-color: #774dd3;
-        }
-        
-        /* plus sign */
-        .sign {
-          width: 100%;
-          transition-duration: .3s;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        
-        .sign svg {
-          width: 17px;
-        }
-        
-        .sign svg path {
-          fill: white;
-        }
-        /* text */
-        .text {
-          position: absolute;
-          right: 0%;
-          width: 0%;
-          opacity: 0;
-          color: white;
-          font-size: 1.2em;
-          font-weight: 600;
-          transition-duration: .3s;
-        }
-        /* hover effect on button width */
-        .Btn:hover {
-          width: 125px;
-          border-radius: 40px;
-          transition-duration: .3s;
-        }
-        
-        .Btn:hover .sign {
-          width: 30%;
-          transition-duration: .3s;
-          padding-left: 20px;
-        }
-        /* hover effect button's text */
-        .Btn:hover .text {
-          opacity: 1;
-          width: 70%;
-          transition-duration: .3s;
-          padding-right: 10px;
-        }
-        /* button click effect*/
-        .Btn:active {
-          transform: translate(2px ,2px);
-        }
-        
-        .center-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 27vh; /* Adjust height as needed */
-        }
-        .logo-image {
-    width: 50px; /* Adjust size as needed */
-    height: 50px;
-    padding-right: 5px;
-  }
+          /* From Uiverse.io by Lealdos */
+          /* From Uiverse.io by TomMussard */
+          .Btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition-duration: .3s;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+            background-color: #774dd3;
+          }
+
+          /* plus sign */
+          .sign {
+            width: 100%;
+            transition-duration: .3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .sign svg {
+            width: 17px;
+          }
+
+          .sign svg path {
+            fill: white;
+          }
+
+          /* text */
+          .text {
+            position: absolute;
+            right: 0%;
+            width: 0%;
+            opacity: 0;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition-duration: .3s;
+          }
+
+          /* hover effect on button width */
+          .Btn:hover {
+            width: 125px;
+            border-radius: 40px;
+            transition-duration: .3s;
+          }
+
+          .Btn:hover .sign {
+            width: 30%;
+            transition-duration: .3s;
+            padding-left: 20px;
+          }
+
+          /* hover effect button's text */
+          .Btn:hover .text {
+            opacity: 1;
+            width: 70%;
+            transition-duration: .3s;
+            padding-right: 10px;
+          }
+
+          /* button click effect*/
+          .Btn:active {
+            transform: translate(2px, 2px);
+          }
+
+          .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 27vh;
+            /* Adjust height as needed */
+          }
+
+          .logo-image {
+            width: 50px;
+            /* Adjust size as needed */
+            height: 50px;
+            padding-right: 5px;
+          }
+
+          .slider {
+            white-space: nowrap;
+            overflow: hidden;
+            background-color: #774dd3;
+          }
+
+          .slide-track {
+            display: inline-block;
+            animation: slide 30s linear infinite;
+          }
+
+          @keyframes slide {
+            0% {
+              transform: translateX(100%);
+            }
+
+            100% {
+              transform: translateX(-100%);
+            }
+          }
         </style>
       </div>
     </div>
@@ -324,8 +417,10 @@
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text text-body bg-white  border-end-0 ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
               </span>
               <input type="text" class="form-control ps-0" placeholder="Search">
@@ -342,9 +437,13 @@
               </a>
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="cursor-pointers">
-                  <path fill-rule="evenodd" d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z" clip-rule="evenodd" />
+              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                  class="cursor-pointers">
+                  <path fill-rule="evenodd"
+                    d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z"
+                    clip-rule="evenodd" />
                 </svg>
               </a>
               <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
@@ -370,7 +469,8 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../static/assets/img/small-logos/logo-google.svg" class="avatar avatar-sm border-radius-sm bg-gradient-dark p-2  me-3 ">
+                        <img src="../static/assets/img/small-logos/logo-google.svg"
+                          class="avatar avatar-sm border-radius-sm bg-gradient-dark p-2  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -388,14 +488,19 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="avatar avatar-sm border-radius-sm bg-slate-800  me-3  my-auto">
-                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
+                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                           <title>credit-card</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
                               <g transform="translate(1716.000000, 291.000000)">
                                 <g transform="translate(453.000000, 454.000000)">
-                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
-                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
+                                  <path class="color-background"
+                                    d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z"
+                                    opacity="0.593633743"></path>
+                                  <path class="color-background"
+                                    d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z">
+                                  </path>
                                 </g>
                               </g>
                             </g>
@@ -425,58 +530,68 @@
         </div>
       </div>
     </nav>
+    <div class="slider  text-white py-2 px-4">
+      <div class="slide-track">
+        <span class="inline-block mx-4">🚨 Breaking News: Stock Markets Reach Record Highs</span>
+        <span class="inline-block mx-4">🌍 World News: Climate Summit Yields New Agreements</span>
+        <span class="inline-block mx-4">⚽ Sports: Local Team Wins Championship</span>
+        <span class="inline-block mx-4">💼 Business: Major Merger Announced in Tech Sector</span>
+        <span class="inline-block mx-4">🎉 Entertainment: Upcoming Movie Premiere Generates Buzz</span>
+      </div>
+    </div>
     <!-- End Navbar -->
     <div class="container-fluid py-4 px-5">
       <hr class="my-0">
       <div class="bg-lime-600 p-4 rounded-lg">
-          <form class="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <!-- State Select -->
-              <div class="flex flex-col">
-                  <label for="state" class="text-sm font-semibold text-black">State</label>
-                  <select id="state" name="state" class="border border-gray-300 rounded-md p-2">
-                      <option value="">-- Select State --</option>
-                      <!-- Add more state options here -->
-                  </select>
-              </div>
-      
-              <!-- District Select -->
-              <div class="flex flex-col">
-                  <label for="district" class="text-sm font-semibold text-black">District</label>
-                  <select id="district" name="district" class="border border-gray-300 rounded-md p-2">
-                      <option value="">-- Select District --</option>
-                      <!-- Add more district options here -->
-                  </select>
-              </div>
-      
-              <!-- APMCs Select -->
-              <div class="flex flex-col">
-                  <label for="apmcs" class="text-sm font-semibold text-black">Mandi</label>
-                  <select id="apmcs" name="apmcs" class="border border-gray-300 rounded-md p-2">
-                      <option value="">-- Select Mandi --</option>
-                      <!-- Add more APMC options here -->
-                  </select>
-              </div>
-      
-              <!-- Commodity Select -->
-              <div class="flex flex-col">
-                  <label for="commodity" class="text-sm font-semibold text-black">Commodity</label>
-                  <select id="commodity" name="commodity" class="border border-gray-300 rounded-md p-2">
-                      <option value="">-- Select Commodity --</option>
-                      <!-- Add more commodity options here -->
-                  </select>
-              </div>
-      
-              <!-- Submit Button -->
-              <div class="flex items-end">
-                  <button type="submit" style="background-color: #774dd3;" class=" text-white font-semibold py-2 px-4 rounded-md hover:bg-yellow-600">
-                      Submit
-                  </button>
-              </div>
-          </form>
+        <form class="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <!-- State Select -->
+          <div class="flex flex-col">
+            <label for="state" class="text-sm font-semibold text-black">State</label>
+            <select id="state" name="state" class="border border-gray-300 rounded-md p-2">
+              <option value="">-- Select State --</option>
+              <!-- Add more state options here -->
+            </select>
+          </div>
+
+          <!-- District Select -->
+          <div class="flex flex-col">
+            <label for="district" class="text-sm font-semibold text-black">District</label>
+            <select id="district" name="district" class="border border-gray-300 rounded-md p-2">
+              <option value="">-- Select District --</option>
+              <!-- Add more district options here -->
+            </select>
+          </div>
+
+          <!-- APMCs Select -->
+          <div class="flex flex-col">
+            <label for="apmcs" class="text-sm font-semibold text-black">Mandi</label>
+            <select id="apmcs" name="apmcs" class="border border-gray-300 rounded-md p-2">
+              <option value="">-- Select Mandi --</option>
+              <!-- Add more APMC options here -->
+            </select>
+          </div>
+
+          <!-- Commodity Select -->
+          <div class="flex flex-col">
+            <label for="commodity" class="text-sm font-semibold text-black">Commodity</label>
+            <select id="commodity" name="commodity" class="border border-gray-300 rounded-md p-2">
+              <option value="">-- Select Commodity --</option>
+              <!-- Add more commodity options here -->
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="flex items-end">
+            <button type="submit" style="background-color: #774dd3;"
+              class=" text-white font-semibold py-2 px-4 rounded-md hover:bg-yellow-600">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
-  </div>
-  
-  
+    </div>
+
+
   </main>
 
   <!--   Core JS Files   -->
@@ -507,23 +622,23 @@
       data: {
         labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
         datasets: [{
-            label: "Sales",
-            tension: 0.4,
-            borderWidth: 0,
-            borderSkipped: false,
-            backgroundColor: "#2ca8ff",
-            data: [450, 200, 100, 220, 500, 100, 400, 230, 500, 200],
-            maxBarThickness: 6
-          },
-          {
-            label: "Sales",
-            tension: 0.4,
-            borderWidth: 0,
-            borderSkipped: false,
-            backgroundColor: "#7c3aed",
-            data: [200, 300, 200, 420, 400, 200, 300, 430, 400, 300],
-            maxBarThickness: 6
-          },
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderSkipped: false,
+          backgroundColor: "#2ca8ff",
+          data: [450, 200, 100, 220, 500, 100, 400, 230, 500, 200],
+          maxBarThickness: 6
+        },
+        {
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderSkipped: false,
+          backgroundColor: "#7c3aed",
+          data: [200, 300, 200, 420, 400, 200, 300, 430, 400, 300],
+          maxBarThickness: 6
+        },
         ],
       },
       options: {
@@ -619,32 +734,32 @@
       data: {
         labels: ["Aug 18", "Aug 19", "Aug 20", "Aug 21", "Aug 22", "Aug 23", "Aug 24", "Aug 25", "Aug 26", "Aug 27", "Aug 28", "Aug 29", "Aug 30", "Aug 31", "Sept 01", "Sept 02", "Sept 03", "Aug 22", "Sept 04", "Sept 05", "Sept 06", "Sept 07", "Sept 08", "Sept 09"],
         datasets: [{
-            label: "Volume",
-            tension: 0,
-            borderWidth: 2,
-            pointRadius: 3,
-            borderColor: "#2ca8ff",
-            pointBorderColor: '#2ca8ff',
-            pointBackgroundColor: '#2ca8ff',
-            backgroundColor: gradientStroke1,
-            fill: true,
-            data: [2828, 1291, 3360, 3223, 1630, 980, 2059, 3092, 1831, 1842, 1902, 1478, 1123, 2444, 2636, 2593, 2885, 1764, 898, 1356, 2573, 3382, 2858, 4228],
-            maxBarThickness: 6
+          label: "Volume",
+          tension: 0,
+          borderWidth: 2,
+          pointRadius: 3,
+          borderColor: "#2ca8ff",
+          pointBorderColor: '#2ca8ff',
+          pointBackgroundColor: '#2ca8ff',
+          backgroundColor: gradientStroke1,
+          fill: true,
+          data: [2828, 1291, 3360, 3223, 1630, 980, 2059, 3092, 1831, 1842, 1902, 1478, 1123, 2444, 2636, 2593, 2885, 1764, 898, 1356, 2573, 3382, 2858, 4228],
+          maxBarThickness: 6
 
-          },
-          {
-            label: "Trade",
-            tension: 0,
-            borderWidth: 2,
-            pointRadius: 3,
-            borderColor: "#832bf9",
-            pointBorderColor: '#832bf9',
-            pointBackgroundColor: '#832bf9',
-            backgroundColor: gradientStroke2,
-            fill: true,
-            data: [2797, 2182, 1069, 2098, 3309, 3881, 2059, 3239, 6215, 2185, 2115, 5430, 4648, 2444, 2161, 3018, 1153, 1068, 2192, 1152, 2129, 1396, 2067, 1215, 712, 2462, 1669, 2360, 2787, 861],
-            maxBarThickness: 6
-          },
+        },
+        {
+          label: "Trade",
+          tension: 0,
+          borderWidth: 2,
+          pointRadius: 3,
+          borderColor: "#832bf9",
+          pointBorderColor: '#832bf9',
+          pointBackgroundColor: '#832bf9',
+          backgroundColor: gradientStroke2,
+          fill: true,
+          data: [2797, 2182, 1069, 2098, 3309, 3881, 2059, 3239, 6215, 2185, 2115, 5430, 4648, 2444, 2161, 3018, 1153, 1068, 2192, 1152, 2129, 1396, 2067, 1215, 712, 2462, 1669, 2360, 2787, 861],
+          maxBarThickness: 6
+        },
         ],
       },
       options: {
@@ -692,7 +807,7 @@
               borderDash: [4, 4]
             },
             ticks: {
-              callback: function(value, index, ticks) {
+              callback: function (value, index, ticks) {
                 return parseInt(value).toLocaleString() + ' EUR';
               },
               display: true,
@@ -746,59 +861,59 @@
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the examp/templates etc -->
   <script src="../static/assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
   <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
-<script src="https://mediafiles.botpress.cloud/1a7a7072-c1fb-4755-859a-a82cb9c017e8/webchat/v2.1/config.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
+  <script src="https://mediafiles.botpress.cloud/1a7a7072-c1fb-4755-859a-a82cb9c017e8/webchat/v2.1/config.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
       // Sample data for dropdown options
-      const states = ["-- Select State --","Andaman and Nicobar Islands","Andhra Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Nagaland","Odisha","Puducherry","Punjab","Rajasthan","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal"];
-      const districts = ["-- Select District --",     "Badwani","Ambala","Rampur","Mahoba","Malda","Aligarh","Jorhat","Ballia","Ludhiana","Kolhapur","Imphal East","Gajapati","Puruliya","Gautam Budh Nagar","Fatehpur","Sitapur","Sundergarh","Kannur","Thiruvannamalai","Medinipur(W)","Amritsar","Bangalore","Bankura","South Andaman","Muktsar","Kurnool","Kachchh","Jalore","Etah","Mewat","Karaikal","Vellore","Chittor","Coimbatore","Surat","Alappuzha","Nowarangpur","Kannuj","Chandel","Surajpur","Jalandhar","Cachar","Imphal West","Dindori","Ganjam","Dehradoon","Thirssur","Darrang","Murshidabad","Cuddalore","Sholapur","Nagpur","Buldhana","Hyderabad","Agra","Dhar","Balasore","Patiala","Karimnagar","Salem","Villupuram","Ramanathapuram","Bharuch","Dharmapuri","Bhatinda","Nizamabad","Namakkal","Uttar Dinajpur","Virudhunagar","Panipat","Sivaganga","Mau(Maunathbhanjan)","Sounth 24 Parganas","Kullu","Nashik","Mansa","Jalpaiguri","Nadia","Gurdaspur","Thanjavur","Badgam","Kota","Hooghly","Allahabad","Jhabua","Amreli","Kanpur","Anupur","Krishnagiri","Khandwa","Hoshiarpur","Jhansi","Raebarelli","Jhalawar","Kollam","Saharanpur","North Tripura","Vadodara(Baroda)","Faridabad","Kamrup","Barmer","Madurai","Etawah","Barnala","Dindigul","Nagercoil (Kannyiakumari)","Jalaun (Orai)","Ernakulam","Burdwan","Bikaner","Mokokchung","East Khasi Hills","Anand","Sepahijala","Ahmednagar","Dhenkanal","Sikar","Kottayam","Kancheepuram","Bahraich","Bulandshahar","Kanker","Panchmahals","Kangra","Mirzapur","Jharsuguda","Sonbhadra","Pune","Angul","Ranga Reddy","Erode","Satara","Thoubal","Kurukshetra","Ropar (Rupnagar)","Chittorgarh","Shahjahanpur","UdhamSinghNagar","West Godavari","Valsad","Kasargod","Muzaffarnagar","Tarntaran","Malappuram","Kolar","Jalgaon","Farukhabad","Ghaziabad","Bastar","Lakhimpur","Bhadohi(Sant Ravi Nagar)","Chitrakut","North Goa","Narsinghpur","Bargarh","Nanded","Khammam","Sheopur","Tumkur","Bishnupur","Baran","Muradabad","Gurgaon","Sonitpur","Baghpat","Dhubri","Thiruvananthapuram","Tonk","Kheda","Mayurbhanja","Nalgonda","South District","North 24 Parganas","Khiri (Lakhimpur)"
-];
-      const mandi = ["-- Select Mandi --","Kumbakonam","Aliganj","Bachau","Nawarangpur","Hindol","Ankleshwar","Shillong","Pallahara","Pennagaram","Dudhi","Chinnasalem","Kurinchipadi","Siyana","Damnagar","Kalliakavillai","Pappireddipatti","Hapur","Coimbatore","Dharapuram","Uthiramerur","Moreh","Sanquelim","Pune(Pimpri)","Papanasam","Lakhanpuri","Achnera","Sendhwa","Villupuram","Panposh","Namagiripettai","Mehatpur","Namakkal","Acharapakkam","Cheyyar","Paliakala","Nadia","Raiganj","Thoubal","Mohammdi","Aroor","Gopiganj","Dasda","Bodeli(Kalediya)","Uthangarai","Bhokar","Mahboob Manison","Pallipattu","Pune(Khadiki)","Dhupguri","Asansol","Gummidipoondy","Konganapuram","Lamlong Bazaar","Risia","Shahpur","Chutmalpur","Sultanpurchilkana","Pataudi","Kadaura","Gadarwada","Thalaivasal","Padra","Nalgonda","Pandhana(F&V)","Vallam","Omalur","Akluj","Zaloosa-Chararishrief (F&V)","Jarar","Kalavai","Khairagarh","Senjeri","Kishunpur","Tikonia","Manjeswaram","Sevur","Melur","Angul(Jarapada)","Mangal Wedha","Nakud","Ramanagara","Nilagiri","Vazhapadi","Pudupalayam","Dhar(F&V)","Kodumudi","Dhariwal","Chelakkara","Devband","Chogawan","Uniyara","Gingee","Voligonda","Chengannur","Sahnewal","Rajapalayam","Samsabad","Sambhal","Kallakurichi","Jaleswar","Itawa","Lalganj","Baruipur(Canning)","Vyra","Pamohi(Garchuk)","Angul","Salem","Palampur","Pitlam","Chathanoor","Mihipurwa","Bodeli(Modasar)","Charkhari","Doharighat","Gogamba(Similiya)","Cuddalore","Kasargod","Manalurpet","Pandharpur","Kolar","Morinda","Bishramganj","Godabhaga","Mirzapur","Kottayam","Milak","Lohian Khas","Malout","Attur","Gogamba","Sangarapuram","Thondamuthur","Katwa","Muzzafarnagar","Negamam","Ghanaur","Jangipur","Bishenpur","Kalikiri","Dhanaula","Burdwan","Avalurpet","Faridabad","Sirsa","Memari","Pethappampatti","Karad","Tindivanam","Rajpura","Attili","Begu","Islampur","Vemulawada","Digapahandi","Lasalgaon(Niphad)","Madlauda","Jagdalpur","Banaganapalli","Nanuta","Kalna","Tiruchengode","Sri Madhopur","Beldanga","Rasipuram","Pongalur","Deoli","Dharampuri","Elumathur","Kolathur","Velur","Jharsuguda","Baraut","Newasa(Ghodegaon)","Muthur","Gopalpatti","Orathanadu","Gulavati","Betnoti","Vayalapadu","Jalore","Karaikal","Chirgaon","Kodungalloor","Maranelloor","Karamadai","Samsi","Thandla","Pandua","Pipli","Syopurkalan(F&V)","Charama","Bargur","Ait","Divai","Adampur","Thanabhawan","Piravam","Sheopurkalan","Barpathari","Dasuya","Jagnair","Ammoor","Baruwasagar","Budalur","Chitwadagaon","Gangavalli","Karumanturai","Palani","Viswan","Koratla","Ramannapet","Bishnupur(Bankura)","Palakode","Dhar","Khanpur","Ghatal","Narharpur","Jaithari","Guskara(Burdwan)","Bodeli(Hadod)","Maduranthagam","Madathukulam","Mau(Chitrakut)","Anchal","Umreth","Deoulgaon Raja","Anaimalai","Mansa","Shahzadpur","Sivagangai","Lunkaransar","Savner","Imphal","Cachar","Madhira","Mulakalacheruvu","Mehta","Yawal","Nadiyad(Chaklasi)","Pochampalli","Kamlaganj","Mandvi","Palladam","Mannar","Saraskana","Rura","Sathur","Jasvantnagar","Surajgarh","Bindki","Singampuneri","Khatra","Tiruvennainallur","Bardoli(Katod)","Kangra(Jaisinghpur)","Ruperdeeha","Bhucho","Habra","Annur","Pune(Hadapsar)","Jalalabad","Barmer","Gubbi","Kolhapur(Malkapur)","Dhekiajuli","Gauripur","Bonai","Thammampati","Anta","Fatehabad","Rahata","Gorakhpur","Bhanjanagar","Thiruppananthal","Parlakhemundi","Dera Baba Nanak","Gangoh","Jorhat","Sunguvarchatram","Kalanaur","Ponner","Harike","Doraha","Kunnathur","Chhibramau(Kannuj)","Pratappur","Kangra(Jassour)","Patti","Bishalgarh","Kharupetia","Thirumangalam","Chevella","Kashipur","Chikli(Khorgam)","Udumalpet","Bhuntar","Chengalpattu","Vikkiravandi","Vellakkoil","Taura","Pune","Robertsganj","Balarampur","Mangkolemba","Ettumanoor","Javer","Atrauli","Papparapatti","Parassala","Kaliyanchanda","Kasinagar","Port Blair","Khambhat(Grain Market)","Purulia","Thanjavur","Irinjalakkuda","Taliparamba","Kanchipuram","Bodeli","Bagpat","Kondotty","Dehradoon","Kolhapur","S.Mandvi","Pollachi","Vellore"];
+      const states = ["-- Select State --", "Andaman and Nicobar Islands", "Andhra Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"];
+      const districts = ["-- Select District --", "Badwani", "Ambala", "Rampur", "Mahoba", "Malda", "Aligarh", "Jorhat", "Ballia", "Ludhiana", "Kolhapur", "Imphal East", "Gajapati", "Puruliya", "Gautam Budh Nagar", "Fatehpur", "Sitapur", "Sundergarh", "Kannur", "Thiruvannamalai", "Medinipur(W)", "Amritsar", "Bangalore", "Bankura", "South Andaman", "Muktsar", "Kurnool", "Kachchh", "Jalore", "Etah", "Mewat", "Karaikal", "Vellore", "Chittor", "Coimbatore", "Surat", "Alappuzha", "Nowarangpur", "Kannuj", "Chandel", "Surajpur", "Jalandhar", "Cachar", "Imphal West", "Dindori", "Ganjam", "Dehradoon", "Thirssur", "Darrang", "Murshidabad", "Cuddalore", "Sholapur", "Nagpur", "Buldhana", "Hyderabad", "Agra", "Dhar", "Balasore", "Patiala", "Karimnagar", "Salem", "Villupuram", "Ramanathapuram", "Bharuch", "Dharmapuri", "Bhatinda", "Nizamabad", "Namakkal", "Uttar Dinajpur", "Virudhunagar", "Panipat", "Sivaganga", "Mau(Maunathbhanjan)", "Sounth 24 Parganas", "Kullu", "Nashik", "Mansa", "Jalpaiguri", "Nadia", "Gurdaspur", "Thanjavur", "Badgam", "Kota", "Hooghly", "Allahabad", "Jhabua", "Amreli", "Kanpur", "Anupur", "Krishnagiri", "Khandwa", "Hoshiarpur", "Jhansi", "Raebarelli", "Jhalawar", "Kollam", "Saharanpur", "North Tripura", "Vadodara(Baroda)", "Faridabad", "Kamrup", "Barmer", "Madurai", "Etawah", "Barnala", "Dindigul", "Nagercoil (Kannyiakumari)", "Jalaun (Orai)", "Ernakulam", "Burdwan", "Bikaner", "Mokokchung", "East Khasi Hills", "Anand", "Sepahijala", "Ahmednagar", "Dhenkanal", "Sikar", "Kottayam", "Kancheepuram", "Bahraich", "Bulandshahar", "Kanker", "Panchmahals", "Kangra", "Mirzapur", "Jharsuguda", "Sonbhadra", "Pune", "Angul", "Ranga Reddy", "Erode", "Satara", "Thoubal", "Kurukshetra", "Ropar (Rupnagar)", "Chittorgarh", "Shahjahanpur", "UdhamSinghNagar", "West Godavari", "Valsad", "Kasargod", "Muzaffarnagar", "Tarntaran", "Malappuram", "Kolar", "Jalgaon", "Farukhabad", "Ghaziabad", "Bastar", "Lakhimpur", "Bhadohi(Sant Ravi Nagar)", "Chitrakut", "North Goa", "Narsinghpur", "Bargarh", "Nanded", "Khammam", "Sheopur", "Tumkur", "Bishnupur", "Baran", "Muradabad", "Gurgaon", "Sonitpur", "Baghpat", "Dhubri", "Thiruvananthapuram", "Tonk", "Kheda", "Mayurbhanja", "Nalgonda", "South District", "North 24 Parganas", "Khiri (Lakhimpur)"
+      ];
+      const mandi = ["-- Select Mandi --", "Kumbakonam", "Aliganj", "Bachau", "Nawarangpur", "Hindol", "Ankleshwar", "Shillong", "Pallahara", "Pennagaram", "Dudhi", "Chinnasalem", "Kurinchipadi", "Siyana", "Damnagar", "Kalliakavillai", "Pappireddipatti", "Hapur", "Coimbatore", "Dharapuram", "Uthiramerur", "Moreh", "Sanquelim", "Pune(Pimpri)", "Papanasam", "Lakhanpuri", "Achnera", "Sendhwa", "Villupuram", "Panposh", "Namagiripettai", "Mehatpur", "Namakkal", "Acharapakkam", "Cheyyar", "Paliakala", "Nadia", "Raiganj", "Thoubal", "Mohammdi", "Aroor", "Gopiganj", "Dasda", "Bodeli(Kalediya)", "Uthangarai", "Bhokar", "Mahboob Manison", "Pallipattu", "Pune(Khadiki)", "Dhupguri", "Asansol", "Gummidipoondy", "Konganapuram", "Lamlong Bazaar", "Risia", "Shahpur", "Chutmalpur", "Sultanpurchilkana", "Pataudi", "Kadaura", "Gadarwada", "Thalaivasal", "Padra", "Nalgonda", "Pandhana(F&V)", "Vallam", "Omalur", "Akluj", "Zaloosa-Chararishrief (F&V)", "Jarar", "Kalavai", "Khairagarh", "Senjeri", "Kishunpur", "Tikonia", "Manjeswaram", "Sevur", "Melur", "Angul(Jarapada)", "Mangal Wedha", "Nakud", "Ramanagara", "Nilagiri", "Vazhapadi", "Pudupalayam", "Dhar(F&V)", "Kodumudi", "Dhariwal", "Chelakkara", "Devband", "Chogawan", "Uniyara", "Gingee", "Voligonda", "Chengannur", "Sahnewal", "Rajapalayam", "Samsabad", "Sambhal", "Kallakurichi", "Jaleswar", "Itawa", "Lalganj", "Baruipur(Canning)", "Vyra", "Pamohi(Garchuk)", "Angul", "Salem", "Palampur", "Pitlam", "Chathanoor", "Mihipurwa", "Bodeli(Modasar)", "Charkhari", "Doharighat", "Gogamba(Similiya)", "Cuddalore", "Kasargod", "Manalurpet", "Pandharpur", "Kolar", "Morinda", "Bishramganj", "Godabhaga", "Mirzapur", "Kottayam", "Milak", "Lohian Khas", "Malout", "Attur", "Gogamba", "Sangarapuram", "Thondamuthur", "Katwa", "Muzzafarnagar", "Negamam", "Ghanaur", "Jangipur", "Bishenpur", "Kalikiri", "Dhanaula", "Burdwan", "Avalurpet", "Faridabad", "Sirsa", "Memari", "Pethappampatti", "Karad", "Tindivanam", "Rajpura", "Attili", "Begu", "Islampur", "Vemulawada", "Digapahandi", "Lasalgaon(Niphad)", "Madlauda", "Jagdalpur", "Banaganapalli", "Nanuta", "Kalna", "Tiruchengode", "Sri Madhopur", "Beldanga", "Rasipuram", "Pongalur", "Deoli", "Dharampuri", "Elumathur", "Kolathur", "Velur", "Jharsuguda", "Baraut", "Newasa(Ghodegaon)", "Muthur", "Gopalpatti", "Orathanadu", "Gulavati", "Betnoti", "Vayalapadu", "Jalore", "Karaikal", "Chirgaon", "Kodungalloor", "Maranelloor", "Karamadai", "Samsi", "Thandla", "Pandua", "Pipli", "Syopurkalan(F&V)", "Charama", "Bargur", "Ait", "Divai", "Adampur", "Thanabhawan", "Piravam", "Sheopurkalan", "Barpathari", "Dasuya", "Jagnair", "Ammoor", "Baruwasagar", "Budalur", "Chitwadagaon", "Gangavalli", "Karumanturai", "Palani", "Viswan", "Koratla", "Ramannapet", "Bishnupur(Bankura)", "Palakode", "Dhar", "Khanpur", "Ghatal", "Narharpur", "Jaithari", "Guskara(Burdwan)", "Bodeli(Hadod)", "Maduranthagam", "Madathukulam", "Mau(Chitrakut)", "Anchal", "Umreth", "Deoulgaon Raja", "Anaimalai", "Mansa", "Shahzadpur", "Sivagangai", "Lunkaransar", "Savner", "Imphal", "Cachar", "Madhira", "Mulakalacheruvu", "Mehta", "Yawal", "Nadiyad(Chaklasi)", "Pochampalli", "Kamlaganj", "Mandvi", "Palladam", "Mannar", "Saraskana", "Rura", "Sathur", "Jasvantnagar", "Surajgarh", "Bindki", "Singampuneri", "Khatra", "Tiruvennainallur", "Bardoli(Katod)", "Kangra(Jaisinghpur)", "Ruperdeeha", "Bhucho", "Habra", "Annur", "Pune(Hadapsar)", "Jalalabad", "Barmer", "Gubbi", "Kolhapur(Malkapur)", "Dhekiajuli", "Gauripur", "Bonai", "Thammampati", "Anta", "Fatehabad", "Rahata", "Gorakhpur", "Bhanjanagar", "Thiruppananthal", "Parlakhemundi", "Dera Baba Nanak", "Gangoh", "Jorhat", "Sunguvarchatram", "Kalanaur", "Ponner", "Harike", "Doraha", "Kunnathur", "Chhibramau(Kannuj)", "Pratappur", "Kangra(Jassour)", "Patti", "Bishalgarh", "Kharupetia", "Thirumangalam", "Chevella", "Kashipur", "Chikli(Khorgam)", "Udumalpet", "Bhuntar", "Chengalpattu", "Vikkiravandi", "Vellakkoil", "Taura", "Pune", "Robertsganj", "Balarampur", "Mangkolemba", "Ettumanoor", "Javer", "Atrauli", "Papparapatti", "Parassala", "Kaliyanchanda", "Kasinagar", "Port Blair", "Khambhat(Grain Market)", "Purulia", "Thanjavur", "Irinjalakkuda", "Taliparamba", "Kanchipuram", "Bodeli", "Bagpat", "Kondotty", "Dehradoon", "Kolhapur", "S.Mandvi", "Pollachi", "Vellore"];
 
-      const commodities = ["-- Select Commodity --", "Mushk Budji Rice","Amaranth Seed","Arhar","Arhar Dal Split","Bajra","Barley","Barnyard Millet","Basmati rice","Browntop Millet","Buck Wheat","Chakhao Or Black Rice","Chana Dal Split","Chana whole","Foxtail Millet","Horse Gram","Jowar","Kabuli Chana Whole","Khesari Dal","Kodo Millet","Little Millet","Lobia","Maize","Masoor whole","Moong Dal Split","Moong whole","Moth","Oats Raw","Paddy","Proso Millet","Ragi","Rajma","Urad Dal Split","Urad whole","Wheat","White Peas","Castor seed","Cotton Seed","Kusum seed","Linseed","Mustard seed","Neem Seeds","Nigar Seed","Peanut kernel","Pongam seeds","Rapeseed","Sal Seed","Sesame seed","Soyabean","Sunflower seed","Amla","Apple","Apricot","Avocado","Baji Banana","Banana","Ber","Bilimbi","Breadfruit","Cherry Red / Black","Custard apple","Garcinia","Grapefruit","Grapes","Guava","Jackfruit","Jamun","Kinnow","Kiwi","Lady Finger Banana","Lemon","Litchi","Mango","Mangosteen","Mootty Fruit","Musk melon","Mysore Banana","Orange","Papaya","Papaya Raw","Passion Fruit","Peach","Pear","Pineapple","Plum","Pomegranate","Rambutan","Raw Mango","Red Banana","Sapota","Sarda","Soursop","Stawberries","Sweet orange","Watermelon","Aloe Vera","Arrowroot","Banana Raw","Beetroot","Bhindi/Okra","Bitter gourd","Bottle gourd","Brinjal","Broccoli/Calabrese","Button Mushroom","Cabbage","Capsicum","Carrots","Cauliflower","Cluster beans","Colocasia vegetable","Coriander leaves","Cucumber","Curry Leaves","Drumstick","Fenugreek Leaves","Garlic","Gherkin","Ginger","Green Amaranthus","Green chillies","Ivy gourd","Jimikand (Suran)","Lesser yam","Lobia Pods","Lotus Stem","Mint Leaves","Mustard leaf","Onion","Oyster Mushroom","Pea","Pointed gourd","Potato","Pumpkin","Raw Turmeric","Red Amaranthus","Reddish","Ribbed celery","Ridge Gourd","Round chilli","Safed Petha","Sem","Snake Guard","Snow Mountain Garlic","Spinach","Sponge Gourd","Spring Onion","Sugar Snap Peas","Sweet Corn","Sweet potato","Tapioca","Tinda","Tomato","Winged bean","Ajwain","Black Pepper Whole","Cardamoms Whole","Cloves Whole","Coriander whole","Cumin","Dried Raw Mango Slices","Dry Ginger","Fennel seed","Fenugreek seed","Large cardamom","Mace Whole","Poppy Seed","Red chilli","Tejpata","Turmeric","Almond Kernel","Anthurium","Areca nut (betel nut)","Bamboo","Banana Stem","Betel leaves","Carnation","Chhappan Kaddu","Chironji","Chrysanthemum","Coconut","Coconut with Husk","Cotton","Gerbera","Ginger Seed","Gladiolus","Green Henna Leaf","Groundnut with pods","Guar seed","Hilsa","Isabgol","Jack Fruit Seed","Jaggery","Jute Seeds","Khandsari","Lily","Mahua flower","Mahua Seed","Marigold","Nutmeg Whole","Persimmon","Pinenut","Raisins","Raw Arrowroot Powder","Raw Cashew nut","Raw Coffee Beans","Raw Honey","Raw Jute","Rittha","Rose Cut Flower","Safed Musli","Saffron","Silk Cocoon","Spray Chrysanthemum","Tamarind","Tender coconut","Tuberose","Tulip","Walnut Kernel","Walnuts Inshell"
-];
-  
+      const commodities = ["-- Select Commodity --", "Mushk Budji Rice", "Amaranth Seed", "Arhar", "Arhar Dal Split", "Bajra", "Barley", "Barnyard Millet", "Basmati rice", "Browntop Millet", "Buck Wheat", "Chakhao Or Black Rice", "Chana Dal Split", "Chana whole", "Foxtail Millet", "Horse Gram", "Jowar", "Kabuli Chana Whole", "Khesari Dal", "Kodo Millet", "Little Millet", "Lobia", "Maize", "Masoor whole", "Moong Dal Split", "Moong whole", "Moth", "Oats Raw", "Paddy", "Proso Millet", "Ragi", "Rajma", "Urad Dal Split", "Urad whole", "Wheat", "White Peas", "Castor seed", "Cotton Seed", "Kusum seed", "Linseed", "Mustard seed", "Neem Seeds", "Nigar Seed", "Peanut kernel", "Pongam seeds", "Rapeseed", "Sal Seed", "Sesame seed", "Soyabean", "Sunflower seed", "Amla", "Apple", "Apricot", "Avocado", "Baji Banana", "Banana", "Ber", "Bilimbi", "Breadfruit", "Cherry Red / Black", "Custard apple", "Garcinia", "Grapefruit", "Grapes", "Guava", "Jackfruit", "Jamun", "Kinnow", "Kiwi", "Lady Finger Banana", "Lemon", "Litchi", "Mango", "Mangosteen", "Mootty Fruit", "Musk melon", "Mysore Banana", "Orange", "Papaya", "Papaya Raw", "Passion Fruit", "Peach", "Pear", "Pineapple", "Plum", "Pomegranate", "Rambutan", "Raw Mango", "Red Banana", "Sapota", "Sarda", "Soursop", "Stawberries", "Sweet orange", "Watermelon", "Aloe Vera", "Arrowroot", "Banana Raw", "Beetroot", "Bhindi/Okra", "Bitter gourd", "Bottle gourd", "Brinjal", "Broccoli/Calabrese", "Button Mushroom", "Cabbage", "Capsicum", "Carrots", "Cauliflower", "Cluster beans", "Colocasia vegetable", "Coriander leaves", "Cucumber", "Curry Leaves", "Drumstick", "Fenugreek Leaves", "Garlic", "Gherkin", "Ginger", "Green Amaranthus", "Green chillies", "Ivy gourd", "Jimikand (Suran)", "Lesser yam", "Lobia Pods", "Lotus Stem", "Mint Leaves", "Mustard leaf", "Onion", "Oyster Mushroom", "Pea", "Pointed gourd", "Potato", "Pumpkin", "Raw Turmeric", "Red Amaranthus", "Reddish", "Ribbed celery", "Ridge Gourd", "Round chilli", "Safed Petha", "Sem", "Snake Guard", "Snow Mountain Garlic", "Spinach", "Sponge Gourd", "Spring Onion", "Sugar Snap Peas", "Sweet Corn", "Sweet potato", "Tapioca", "Tinda", "Tomato", "Winged bean", "Ajwain", "Black Pepper Whole", "Cardamoms Whole", "Cloves Whole", "Coriander whole", "Cumin", "Dried Raw Mango Slices", "Dry Ginger", "Fennel seed", "Fenugreek seed", "Large cardamom", "Mace Whole", "Poppy Seed", "Red chilli", "Tejpata", "Turmeric", "Almond Kernel", "Anthurium", "Areca nut (betel nut)", "Bamboo", "Banana Stem", "Betel leaves", "Carnation", "Chhappan Kaddu", "Chironji", "Chrysanthemum", "Coconut", "Coconut with Husk", "Cotton", "Gerbera", "Ginger Seed", "Gladiolus", "Green Henna Leaf", "Groundnut with pods", "Guar seed", "Hilsa", "Isabgol", "Jack Fruit Seed", "Jaggery", "Jute Seeds", "Khandsari", "Lily", "Mahua flower", "Mahua Seed", "Marigold", "Nutmeg Whole", "Persimmon", "Pinenut", "Raisins", "Raw Arrowroot Powder", "Raw Cashew nut", "Raw Coffee Beans", "Raw Honey", "Raw Jute", "Rittha", "Rose Cut Flower", "Safed Musli", "Saffron", "Silk Cocoon", "Spray Chrysanthemum", "Tamarind", "Tender coconut", "Tuberose", "Tulip", "Walnut Kernel", "Walnuts Inshell"
+      ];
+
       // Populate dropdown options
       const stateSelect = document.getElementById('state');
       const districtSelect = document.getElementById('district');
       const apmcsSelect = document.getElementById('apmcs');
       const commoditySelect = document.getElementById('commodity');
-  
+
       // Function to populate options
       function populateOptions(selectElement, options) {
-          selectElement.innerHTML = options.map(option => `<option value="${option}">${option}</option>`).join('');
+        selectElement.innerHTML = options.map(option => `<option value="${option}">${option}</option>`).join('');
       }
-  
+
       populateOptions(stateSelect, states);
       populateOptions(districtSelect, districts);
       populateOptions(apmcsSelect, apmcs);
       populateOptions(commoditySelect, commodities);
-  
+
       // Handle form submission
       const form = document.querySelector('form');
-      form.addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent the form from submitting normally
-  
-          const selectedState = stateSelect.value;
-          const selectedDistrict = districtSelect.value;
-          const selectedApmcs = apmcsSelect.value;
-          const selectedCommodity = commoditySelect.value;
-  
-          console.log('Selected State:', selectedState);
-          console.log('Selected District:', selectedDistrict);
-          console.log('Selected APMCs:', selectedApmcs);
-          console.log('Selected Commodity:', selectedCommodity);
-  
-          // You can replace the above with an actual form submission or other logic
+      form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        const selectedState = stateSelect.value;
+        const selectedDistrict = districtSelect.value;
+        const selectedApmcs = apmcsSelect.value;
+        const selectedCommodity = commoditySelect.value;
+
+        console.log('Selected State:', selectedState);
+        console.log('Selected District:', selectedDistrict);
+        console.log('Selected APMCs:', selectedApmcs);
+        console.log('Selected Commodity:', selectedCommodity);
+
+        // You can replace the above with an actual form submission or other logic
       });
-  });
+    });
   </script>
-  
+
 </body>
 
 </html>
 
-ANDAMAN AND NICOBAR ISLANDS,ANDHRA PRADESH,ASSAM,BIHAR,CHANDIGARH,CHHATTISGARH,GOA,GUJARAT,HARYANA,HIMACHAL PRADESH,JAMMU AND KASHMIR,JHARKHAND,KARNATAKA,KERALA,MADHYA PRADESH,MAHARASHTRA,NAGALAND,ODISHA,PUDUCHERRY,PUNJAB,RAJASTHAN,TAMIL NADU,TELANGANA,TRIPURA,UTTAR PRADESH,UTTARAKHAND,WEST BENGAL
-
-
-
+<!-- ANDAMAN AND NICOBAR ISLANDS,ANDHRA PRADESH,ASSAM,BIHAR,CHANDIGARH,CHHATTISGARH,GOA,GUJARAT,HARYANA,HIMACHAL
+PRADESH,JAMMU AND KASHMIR,JHARKHAND,KARNATAKA,KERALA,MADHYA
+PRADESH,MAHARASHTRA,NAGALAND,ODISHA,PUDUCHERRY,PUNJAB,RAJASTHAN,TAMIL NADU,TELANGANA,TRIPURA,UTTAR
+PRADESH,UTTARAKHAND,WEST BENGAL -->
