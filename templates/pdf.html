@@ -21,6 +21,7 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="{% static 'assets/css/corporate-ui-dashboard.css' %}?v=1.0.0" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="{% static 'assets/img/logo.png' %}">
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -67,6 +68,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand d-flex align-items-center m-0" href=" https://demos.creative-tim.com/corporate-ui-dashboa/templates/dashboard.html " target="_blank">
+        <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="logo-image">
         <span class="font-weight-bold text-lg">KRISHIDOOT</span>
       </a>
     </div>
@@ -175,7 +177,7 @@
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="{% url 'soilAnalysis' %}">
+            <a class="nav-link active " href="{% url 'soilAnalysis' %}">
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                 <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>rtl</title>
@@ -298,6 +300,11 @@
           align-items: center;
           height: 27vh; /* Adjust height as needed */
         }
+        .logo-image {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    padding-right: 5px;
+  }
         </style>
       </div>
     </div>
@@ -440,13 +447,10 @@
                <button type="submit" class="btn btn-primary">Submit</button>
            </form>
          </div>
-         <div class="container mt-4">
-           <div class="row">
-               <!-- First Column: Predicted Disease Image and Text -->
-                   </div>
-               </div>
-           </div>
-       </div>
+        <div class="container mt-4">
+          <h1 style="font-size: 28px;">Response:</h1>
+          <p id="response-text" class="lead">{{ context |linebreaksbr }}</p>
+        </div>
    
        <!-- Bootstrap JS and dependencies -->
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -509,6 +513,8 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the examp/templates etc -->
   <script src="{% static 'assets/js/corporate-ui-dashboard.min.js?v=1.0.0' %}"></script>
+  <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
+<script src="https://mediafiles.botpress.cloud/1a7a7072-c1fb-4755-859a-a82cb9c017e8/webchat/v2.1/config.js"></script>
 </body>
 
 </html>
