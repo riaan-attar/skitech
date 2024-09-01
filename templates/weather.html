@@ -636,134 +636,131 @@
         </ul>
       </div>
     </div>
-  </nav>
-  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-    <!-- End Navbar -->
-    <section class="weather-section">
-      <div class="container">
-        <div class="forecast">
-          <h2>Today's Weather Forecast</h2>
-
-          <div class="weather-info">
-            <!-- Weather Block -->
-            <div class="weather-block">
-              <img src="cloud-icon.png" alt="Weather Icon" class="weather-icon">
-              <div class="temperature">29°C/23°C</div>
-              <div class="description">Partly cloudy with chances of rain.</div>
-            </div>
-
-            <!-- Humidity and Sunrise/Sunset Block -->
-            <div class="humidity-block">
-              <div class="info-row">
-                <span>Humidity at 8:30 AM:</span>
-                <span>90%</span>
-              </div>
-              <div class="info-row">
-                <span>Humidity at 5:30 PM:</span>
-                <span>60%</span>
-              </div>
-              <div class="info-row">
-                <span>Sunrise Time:</span>
-                <span>06:19</span>
-              </div>
-              <div class="info-row">
-                <span>Sunset Time:</span>
-                <span>18:51</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 7-Day Forecast Section -->
-          <div class="seven-day-forecast">
-            <!-- Repeat this block for each day -->
-            <div class="day-block">
-              <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
-              <div class="day-name">Monday</div>
-              <div class="day-temperature">28°C/22°C</div>
-              <div class="day-description">Rain or thundershowers</div>
-            </div>
-            <!-- Additional blocks for the remaining days -->
-            <div class="day-block">
-              <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
-              <div class="day-name">Tuesday</div>
-              <div class="day-temperature">29°C/22°C</div>
-              <div class="day-description">Rain expected</div>
-            </div>
-            <div class="day-block">
-              <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
-              <div class="day-name">Wednesday</div>
-              <div class="day-temperature">29°C/22°C</div>
-              <div class="day-description">Partly cloudy</div>
-            </div>
-            <div class="day-block">
-              <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
-              <div class="day-name">Thursday</div>
-              <div class="day-temperature">29°C/22°C</div>
-              <div class="day-description">Scattered showers</div>
-            </div>
-            <div class="day-block">
-              <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
-              <div class="day-name">Friday</div>
-              <div class="day-temperature">29°C/22°C</div>
-              <div class="day-description">Sunny intervals</div>
-            </div>
-            <div class="day-block">
-              <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
-              <div class="day-name">Saturday</div>
-              <div class="day-temperature">29°C/22°C</div>
-              <div class="day-description">Clear skies</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-
-
-  <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
+  </nav><script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
   <script src="https://mediafiles.botpress.cloud/1a7a7072-c1fb-4755-859a-a82cb9c017e8/webchat/v2.1/config.js"></script>
-  <script>
+
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+    <section class="weather-section">
+        <div class="container">
+            <div class="forecast">
+                <h2>Today's Weather Forecast</h2>
+
+                <div class="weather-info">
+                    <!-- Weather Block -->
+                    <div class="weather-block">
+                        <img src="cloud-icon.png" alt="Weather Icon" class="weather-icon">
+                        <div class="temperature">Temperature</div>
+                        <div class="description">Weather Description</div>
+                    </div>
+
+                    <!-- Humidity and Sunrise/Sunset Block -->
+                    <div class="humidity-block">
+                        <div class="info-row">
+                            <span>Humidity at 8:30 AM:</span>
+                            <span>Loading...</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Humidity at 5:30 PM:</span>
+                            <span>Loading...</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Sunrise Time:</span>
+                            <span>Loading...</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Sunset Time:</span>
+                            <span>Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7-Day Forecast Section -->
+                <div class="seven-day-forecast">
+                    <!-- Day Block Example -->
+                    <div class="day-block">
+                        <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
+                        <div class="day-name">Day Name</div>
+                        <div class="day-temperature">Temperature</div>
+                        <div class="day-description">Description</div>
+                    </div>
+                    <div class="day-block">
+                      <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
+                      <div class="day-name">Day Name</div>
+                      <div class="day-temperature">Temperature</div>
+                      <div class="day-description">Description</div>
+                  </div>
+                  <div class="day-block">
+                    <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
+                    <div class="day-name">Day Name</div>
+                    <div class="day-temperature">Temperature</div>
+                    <div class="day-description">Description</div>
+                </div>
+                <div class="day-block">
+                  <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
+                  <div class="day-name">Day Name</div>
+                  <div class="day-temperature">Temperature</div>
+                  <div class="day-description">Description</div>
+              </div>
+              <div class="day-block">
+                <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
+                <div class="day-name">Day Name</div>
+                <div class="day-temperature">Temperature</div>
+                <div class="day-description">Description</div>
+            </div>
+            <div class="day-block">
+              <img src="cloud-icon.png" alt="Weather Icon" class="day-icon">
+              <div class="day-name">Day Name</div>
+              <div class="day-temperature">Temperature</div>
+              <div class="day-description">Description</div>
+          </div>
+          
+                    <!-- Repeat .day-block for each day -->
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
     // Your Weather API key and URL
     const apiKey = '3266f0c646864f02a83152630243108';
     const baseURL = 'http://api.weatherapi.com/v1';
 
     // Function to fetch today's weather
     async function fetchWeather(location) {
-      try {
-        const response = await fetch(`${baseURL}/forecast.json?key=${apiKey}&q=${location}&days=7`);
-        const data = await response.json();
+        try {
+            const response = await fetch(`${baseURL}/forecast.json?key=${apiKey}&q=${location}&days=7`);
+            const data = await response.json();
 
-        // Update today's weather
-        document.querySelector('.text-4xl').textContent = `${data.current.temp_c}°C`;
-        document.querySelector('.text-gray-600').textContent = data.current.condition.text;
+            // Update today's weather
+            document.querySelector('.temperature').textContent = `${data.current.temp_c}°C`;
+            document.querySelector('.description').textContent = data.current.condition.text;
 
-        // Update humidity and sunrise/sunset times
-        const humidityMorning = data.forecast.forecastday[0].hour[8].humidity;
-        const humidityEvening = data.forecast.forecastday[0].hour[17].humidity;
-        document.querySelectorAll('.flex span')[1].textContent = `${humidityMorning}%`;
-        document.querySelectorAll('.flex span')[3].textContent = `${humidityEvening}%`;
-        document.querySelectorAll('.flex span')[5].textContent = data.forecast.forecastday[0].astro.sunrise;
-        document.querySelectorAll('.flex span')[7].textContent = data.forecast.forecastday[0].astro.sunset;
+            // Update humidity and sunrise/sunset times
+            const humidityMorning = data.forecast.forecastday[0].hour[8].humidity;
+            const humidityEvening = data.forecast.forecastday[0].hour[17].humidity;
+            document.querySelectorAll('.info-row span')[1].textContent = `${humidityMorning}%`;
+            document.querySelectorAll('.info-row span')[3].textContent = `${humidityEvening}%`;
+            document.querySelectorAll('.info-row span')[5].textContent = data.forecast.forecastday[0].astro.sunrise;
+            document.querySelectorAll('.info-row span')[7].textContent = data.forecast.forecastday[0].astro.sunset;
 
-        // Update the 7-day forecast
-        const forecastDays = data.forecast.forecastday;
-        forecastDays.forEach((day, index) => {
-          const forecastBlock = document.querySelectorAll('.grid-cols-2 .text-center')[index];
-          forecastBlock.querySelector('.text-gray-600').textContent = `${day.day.avgtemp_c}°C`;
-          forecastBlock.querySelector('.font-semibold').textContent = new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' });
-          forecastBlock.querySelector('.text-gray-600:last-of-type').textContent = day.day.condition.text;
-        });
+            // Update the 7-day forecast
+            const forecastDays = data.forecast.forecastday;
+            forecastDays.forEach((day, index) => {
+                const forecastBlock = document.querySelectorAll('.day-block')[index];
+                forecastBlock.querySelector('.day-temperature').textContent = `${day.day.avgtemp_c}°C`;
+                forecastBlock.querySelector('.day-name').textContent = new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' });
+                forecastBlock.querySelector('.day-description').textContent = day.day.condition.text;
+            });
 
-      } catch (error) {
-        console.error('Error fetching weather data:', error);
-      }
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+        }
     }
 
     // Call the function with the user's location
     fetchWeather('auto:ip');
-  </script>
+</script>
 
 </body>
 

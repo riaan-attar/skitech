@@ -9,7 +9,7 @@ def landing(request):
 
 def signup_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.POST['name']
         email = request.POST['email']
         phone_no = request.POST['phone_number']
         password1 = request.POST['password']
@@ -37,7 +37,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             if user.role == CustomUser.FARMER:
-                return redirect('farmer_dashboard')  # Redirect to farmer's dashboard
+                return redirect('dashboard')  # Redirect to farmer's dashboard
             elif user.role == CustomUser.VENDOR:
                 return redirect('vendor_dashboard')  # Redirect to vendor's dashboard
         else:
