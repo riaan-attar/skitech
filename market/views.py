@@ -43,6 +43,8 @@ def vendor_orders(request):
     
 
     return render(request, 'vendor_orders.html', {'orders': orders})
+
+
 # Create your views here.
 def market(request):
     return render(request, 'marketplace.html')
