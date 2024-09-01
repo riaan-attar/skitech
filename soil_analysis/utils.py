@@ -15,7 +15,7 @@ import re
 import base64
 from io import BytesIO
 from django.core.files.base import ContentFile
-
+from django.core.exceptions import ValidationError
 # List of class labels
 class_labels = [
     'Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rust', 'Apple___healthy',
@@ -150,3 +150,14 @@ def base64_image(image_path):
             return f"data:image/{image_path.split('.')[-1]};base64,{base64_image}"
     except Exception as e:
         raise RuntimeError(f"Error reading image file: {e}")
+    
+
+
+def validate_input(value, min_value=0, max_value=float('inf'), field_name="Field"):
+    try:
+        value = float(value)
+        if not (min_value <= value <= max_value):
+            raise ValidationError(f"{field_name} value should be between {min_value} and {max_value}.")
+        return value
+    except ValueError:
+        raise ValidationError(f"{field_name} must be a number.")
