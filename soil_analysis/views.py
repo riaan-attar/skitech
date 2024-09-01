@@ -143,7 +143,7 @@ def crop_recommendation(request):
             image_url_1 = f'static/crop_images/{crop_1}.jpg'
             image_url_2 = f'static/crop_images/{crop_2}.jpg'
             image_url_3 = f'static/crop_images/{crop_3}.jpg'
-            
+            request.session['best_crops'] = top_3_crops
             request.session['nitrogen'] = nitrogen
             request.session['phosphorus'] = phosphorus
             request.session['potassium'] = potassium
@@ -290,6 +290,7 @@ def work_plan(request):
         9. Conclusion
 
         Ensure that each section contains detailed and actionable information tailored to the provided conditions and requirements. Use clear and professional language suitable for implementation by farmers and agricultural planners.
+        make sure to give appropraite spacing in between sections , and dont ask farme to do research on trends or anything you are supposed to be solution so you must give a suggestion,no disclaimer strictly,also format the the text using html tags such as new line and bold tags.
         """
 
         # Generate the work plan content
