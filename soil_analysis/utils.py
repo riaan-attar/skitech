@@ -161,3 +161,22 @@ def validate_input(value, min_value=0, max_value=float('inf'), field_name="Field
         return value
     except ValueError:
         raise ValidationError(f"{field_name} must be a number.")
+    
+def extract_info_from_combined_response(response, info_type):
+    # Implement this function to extract specific information from the combined response
+    # For example, you might split the response based on certain keywords or patterns
+    # and return the relevant part for each info_type
+    # Here's a simplified placeholder implementation:
+    if info_type == "maturation time":
+        # Extract maturation time
+        pass
+    elif info_type == "feasibility":
+        # Extract feasibility
+        pass
+    elif info_type == "fertilizer":
+        # Extract fertilizer recommendation
+        pass
+    elif info_type == "best practices":
+        # Extract best practices
+        pass
+    return ""
