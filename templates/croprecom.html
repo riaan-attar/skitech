@@ -24,7 +24,7 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start " id="sidenav-main">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start" id="sidenav-main" > 
     <style>
       /* For Chrome, Safari, and other WebKit browsers */
       #sidenav-main {
@@ -45,8 +45,24 @@
     max-width: 100%;
     box-sizing: border-box; /* Ensure padding/margin don't cause overflow */
 }
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
 
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
 
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
     </style>
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -54,10 +70,10 @@
         <span class="font-weight-bold text-lg">KRISHIDOOT</span>
       </a>
     </div>
-    <div class="collapse navbar-collapse px-4 " id="sidenav-collapse-main" style=" height: 88%;">
+    <div class="collapse navbar-collapse px-4 " id="sidenav-collapse-main" style=" height: 90%;">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  active" href="{% url 'dashboard' %}">
+          <a class="nav-link" href="{% url 'dashboard' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>dashboard</title>
@@ -125,7 +141,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="{% url 'mandi' %}">
+          <a class="nav-link " href="{% url 'mandi' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>rtl</title>
@@ -142,7 +158,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="{% url 'weather' %}">
+          <a class="nav-link active " href="{% url 'weather' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>rtl</title>
