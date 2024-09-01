@@ -6,6 +6,11 @@ from django.http import HttpResponse
 
 dotenv.load_dotenv()
 
+import os
+import requests
+from django.shortcuts import render
+from django.http import HttpResponse
+
 def mandi(request):
     # Default context if no POST request is made
     context = {
@@ -20,18 +25,32 @@ def mandi(request):
     # Check if the request is a POST request
     if request.method == 'POST':
         # Get the filter values from the POST data
-        filter_state = request.POST.get('state')
-        filter_district = request.POST.get('district')
-        filter_market = request.POST.get('mandi')
-        filter_commodity = request.POST.get('commodity')
+        filter_state = request.POST.get('state', '').strip()
+        filter_district = request.POST.get('district', '').strip()
+        filter_market = request.POST.get('mandi', '').strip()
+        filter_commodity = request.POST.get('commodity', '').strip()
+
+        # Validate inputs
+        if not all([filter_state, filter_district, filter_market, filter_commodity]):
+            return HttpResponse("All filter fields are required.")
 
         # Base API URL
         base_url = "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070"
         api_key = os.getenv('MANDI_API_KEY')
 
-        # Constructing the data URL without variety and grade filters
-        data_url = f"{base_url}?api-key={api_key}&format=json&filters%5Bstate.keyword%5D={filter_state}&filters%5Bdistrict%5D={filter_district}&filters%5Bmarket%5D={filter_market}&filters%5Bcommodity%5D={filter_commodity}"
+        if not api_key:
+            return HttpResponse("API key is missing.")
 
+        # Constructing the data URL without variety and grade filters
+        data_url = (
+                    f"https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070"
+                    f"?api-key=579b464db66ec23bdd0000010b3b218df49d48615ad89b16c36ad277"
+                    f"&format=json"
+                    f"&filters%5Bstate.keyword%5D={state}"
+                    f"&filters%5Bdistrict%5D={district}"
+                    f"&filters%5Bmarket%5D={market}"
+                    f"&filters%5Bcommodity%5D={commodity}"
+                    )
         # Get the data using requests
         try:
             response = requests.get(data_url)

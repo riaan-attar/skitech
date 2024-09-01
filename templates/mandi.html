@@ -567,8 +567,8 @@
 
           <!-- APMCs Select -->
           <div class="flex flex-col">
-            <label for="apmcs" class="text-sm font-semibold text-black">Mandi</label>
-            <select id="apmcs" name="apmcs" class="border border-gray-300 rounded-md p-2">
+            <label for="mandi" class="text-sm font-semibold text-black">Mandi</label>
+            <select id="mandi" name="mandi" class="border border-gray-300 rounded-md p-2">
               <option value="">-- Select Mandi --</option>
               <!-- Add more APMC options here -->
             </select>
@@ -593,8 +593,67 @@
         </form>
       </div>
     </div>
+    <div class="container-fluid py-1 px-5">
+      <div class="row">
+        <div class="col-12">
+          <div class="card border shadow-xs mb-4">
+            <div class="card-header border-bottom pb-0">
+              <div class="d-sm-flex align-items-center">
+                <div class="ms-auto d-flex">
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 py-0">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead class="bg-gray-100">
+                    <tr>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7">State</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">District</th>
+                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Mandi</th>
+                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Commodity</th>
+                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">date</th>
 
-
+                      <th class="text-secondary opacity-7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center ms-1">
+                            <h6 class="mb-0 text-sm font-weight-semibold">{{ state }} </h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-sm text-dark font-weight-semibold mb-0">{{ district }}</p>
+                      </td>
+                      <td>
+                        <p class="text-sm text-dark font-weight-semibold mb-0">{{ mandi }}</p>
+                      </td>
+                      <td>
+                        <p class="text-sm text-dark font-weight-semibold mb-0">{{ commodity }}</p>
+                      </td>
+                      <td>
+                        <p class="text-sm text-dark font-weight-semibold mb-0">{{ date }}</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- <div class="border-top py-3 px-3 d-flex align-items-center">
+                <p class="font-weight-semibold mb-0 text-dark text-sm">Page 1 of 10</p>
+                <div class="ms-auto">
+                  <button class="btn btn-sm btn-white mb-0">Previous</button>
+                  <button class="btn btn-sm btn-white mb-0">Next</button>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!--   Core JS Files   -->
@@ -869,17 +928,17 @@
     document.addEventListener('DOMContentLoaded', function () {
       // Sample data for dropdown options
       const states = ["-- Select State --", "Andaman and Nicobar Islands", "Andhra Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"];
-      const districts = ["-- Select District --", "Badwani", "Ambala", "Rampur", "Mahoba", "Malda", "Aligarh", "Jorhat", "Ballia", "Ludhiana", "Kolhapur", "Imphal East", "Gajapati", "Puruliya", "Gautam Budh Nagar", "Fatehpur", "Sitapur", "Sundergarh", "Kannur", "Thiruvannamalai", "Medinipur(W)", "Amritsar", "Bangalore", "Bankura", "South Andaman", "Muktsar", "Kurnool", "Kachchh", "Jalore", "Etah", "Mewat", "Karaikal", "Vellore", "Chittor", "Coimbatore", "Surat", "Alappuzha", "Nowarangpur", "Kannuj", "Chandel", "Surajpur", "Jalandhar", "Cachar", "Imphal West", "Dindori", "Ganjam", "Dehradoon", "Thirssur", "Darrang", "Murshidabad", "Cuddalore", "Sholapur", "Nagpur", "Buldhana", "Hyderabad", "Agra", "Dhar", "Balasore", "Patiala", "Karimnagar", "Salem", "Villupuram", "Ramanathapuram", "Bharuch", "Dharmapuri", "Bhatinda", "Nizamabad", "Namakkal", "Uttar Dinajpur", "Virudhunagar", "Panipat", "Sivaganga", "Mau(Maunathbhanjan)", "Sounth 24 Parganas", "Kullu", "Nashik", "Mansa", "Jalpaiguri", "Nadia", "Gurdaspur", "Thanjavur", "Badgam", "Kota", "Hooghly", "Allahabad", "Jhabua", "Amreli", "Kanpur", "Anupur", "Krishnagiri", "Khandwa", "Hoshiarpur", "Jhansi", "Raebarelli", "Jhalawar", "Kollam", "Saharanpur", "North Tripura", "Vadodara(Baroda)", "Faridabad", "Kamrup", "Barmer", "Madurai", "Etawah", "Barnala", "Dindigul", "Nagercoil (Kannyiakumari)", "Jalaun (Orai)", "Ernakulam", "Burdwan", "Bikaner", "Mokokchung", "East Khasi Hills", "Anand", "Sepahijala", "Ahmednagar", "Dhenkanal", "Sikar", "Kottayam", "Kancheepuram", "Bahraich", "Bulandshahar", "Kanker", "Panchmahals", "Kangra", "Mirzapur", "Jharsuguda", "Sonbhadra", "Pune", "Angul", "Ranga Reddy", "Erode", "Satara", "Thoubal", "Kurukshetra", "Ropar (Rupnagar)", "Chittorgarh", "Shahjahanpur", "UdhamSinghNagar", "West Godavari", "Valsad", "Kasargod", "Muzaffarnagar", "Tarntaran", "Malappuram", "Kolar", "Jalgaon", "Farukhabad", "Ghaziabad", "Bastar", "Lakhimpur", "Bhadohi(Sant Ravi Nagar)", "Chitrakut", "North Goa", "Narsinghpur", "Bargarh", "Nanded", "Khammam", "Sheopur", "Tumkur", "Bishnupur", "Baran", "Muradabad", "Gurgaon", "Sonitpur", "Baghpat", "Dhubri", "Thiruvananthapuram", "Tonk", "Kheda", "Mayurbhanja", "Nalgonda", "South District", "North 24 Parganas", "Khiri (Lakhimpur)"
+      const districts = ["-- Select District --", "Badwani", "Ambala", "Rampur", "Mahoba", "Malda", "Aligarh", "Jorhat", "Ballia", "Ludhiana", "Kolhapur", "Imphal East", "Gajapati", "Puruliya", "Gautam Budh Nagar", "Fatehpur", "Sitapur", "Sundergarh", "Kannur", "Thiruvannamalai", "Medinipur(W)", "Amritsar", "Bangalore", "Bankura", "South Andaman", "Muktsar", "Kurnool", "Kachchh", "Jalore", "Etah", "Mewat", "Karaikal", "Vellore", "Chittor", "Coimbatore", "Surat", "Alappuzha", "Nowarangpur", "Kannuj", "Chandel", "Surajpur", "Jalandhar", "Cachar", "Imphal West", "Dindori", "Ganjam", "Dehradoon", "Thirssur", "Darrang", "Murshidabad", "Cuddalore", "Sholapur", "Nagpur", "Buldhana", "Hyderabad", "Agra", "Dhar", "Balasore", "Patiala", "Karimnagar", "Salem", "Villupuram", "Ramanathapuram", "Bharuch", "Dharmapuri", "Bhatinda", "Nizamabad", "Namakkal", "Uttar Dinajpur", "Virudhunagar", "Panipat", "Sivaganga", "Mau(Maunathbhanjan)", "Sounth 24 Parganas", "Kullu", "Nashik", "Mansa", "Jalpaiguri", "Nadia", "Gurdaspur", "Thanjavur", "Badgam", "Kota", "Hooghly", "Allahabad", "Jhabua", "Amreli", "Kanpur", "Anupur", "Krishnagiri", "Khandwa", "Hoshiarpur", "Jhansi", "Raebarelli", "Jhalawar", "Kollam", "Saharanpur", "North Tripura", "Vadodara(Baroda)", "Faridabad", "Kamrup", "Barmer", "Madurai", "Etawah", "Barnala", "Dindigul", "Nagercoil (Kannyiakumari)", "Jalaun (Orai)", "Ernakulam", "Burdwan", "Bikaner", "Mokokchung", "East Khasi Hills", "Anand", "Sepahijala", "Ahmednagar", "Dhenkanal", "Sikar", "Kottayam", "Kancheepuram", "Bahraich", "Bulandshahar", "Kanker", "Panchmahals", "Kangra", "Mirzapur", "Jharsuguda", "Sonbhadra", "Pune", "Angul", "Ranga Reddy", "Erode", "Satara", "Thoubal", "Kurukshetra", "Ropar (Rupnagar)", "Chittorgarh", "Shahjahanpur", "UdhamSinghNagar", "West Godavari", "Valsad", "Kasargod", "Muzaffarnagar", "Tarntaran", "Malappuram", "Kolar", "Jalgaon", "Farukhabad", "Ghaziabad", "Bastar", "Lakhimpur", "Bhadohi(Sant Ravi Nagar)", "Chitrakut", "North Goa", "Narsinghpur", "Bargarh", "Nanded", "Khammam", "Sheopur", "Tumkur", "Bishnupur", "Baran", "Muradabad", "Gurgaon", "Sonitpur", "Baghpat", "Dhubri", "Thiruvananthapuram", "Tonk", "Kheda", "Mayurbhanja", "Nalgonda", "South District", "North 24 Parganas", "Khiri (Lakhimpur)","Purba Bardhaman"
       ];
       const mandi = ["-- Select Mandi --", "Kumbakonam", "Aliganj", "Bachau", "Nawarangpur", "Hindol", "Ankleshwar", "Shillong", "Pallahara", "Pennagaram", "Dudhi", "Chinnasalem", "Kurinchipadi", "Siyana", "Damnagar", "Kalliakavillai", "Pappireddipatti", "Hapur", "Coimbatore", "Dharapuram", "Uthiramerur", "Moreh", "Sanquelim", "Pune(Pimpri)", "Papanasam", "Lakhanpuri", "Achnera", "Sendhwa", "Villupuram", "Panposh", "Namagiripettai", "Mehatpur", "Namakkal", "Acharapakkam", "Cheyyar", "Paliakala", "Nadia", "Raiganj", "Thoubal", "Mohammdi", "Aroor", "Gopiganj", "Dasda", "Bodeli(Kalediya)", "Uthangarai", "Bhokar", "Mahboob Manison", "Pallipattu", "Pune(Khadiki)", "Dhupguri", "Asansol", "Gummidipoondy", "Konganapuram", "Lamlong Bazaar", "Risia", "Shahpur", "Chutmalpur", "Sultanpurchilkana", "Pataudi", "Kadaura", "Gadarwada", "Thalaivasal", "Padra", "Nalgonda", "Pandhana(F&V)", "Vallam", "Omalur", "Akluj", "Zaloosa-Chararishrief (F&V)", "Jarar", "Kalavai", "Khairagarh", "Senjeri", "Kishunpur", "Tikonia", "Manjeswaram", "Sevur", "Melur", "Angul(Jarapada)", "Mangal Wedha", "Nakud", "Ramanagara", "Nilagiri", "Vazhapadi", "Pudupalayam", "Dhar(F&V)", "Kodumudi", "Dhariwal", "Chelakkara", "Devband", "Chogawan", "Uniyara", "Gingee", "Voligonda", "Chengannur", "Sahnewal", "Rajapalayam", "Samsabad", "Sambhal", "Kallakurichi", "Jaleswar", "Itawa", "Lalganj", "Baruipur(Canning)", "Vyra", "Pamohi(Garchuk)", "Angul", "Salem", "Palampur", "Pitlam", "Chathanoor", "Mihipurwa", "Bodeli(Modasar)", "Charkhari", "Doharighat", "Gogamba(Similiya)", "Cuddalore", "Kasargod", "Manalurpet", "Pandharpur", "Kolar", "Morinda", "Bishramganj", "Godabhaga", "Mirzapur", "Kottayam", "Milak", "Lohian Khas", "Malout", "Attur", "Gogamba", "Sangarapuram", "Thondamuthur", "Katwa", "Muzzafarnagar", "Negamam", "Ghanaur", "Jangipur", "Bishenpur", "Kalikiri", "Dhanaula", "Burdwan", "Avalurpet", "Faridabad", "Sirsa", "Memari", "Pethappampatti", "Karad", "Tindivanam", "Rajpura", "Attili", "Begu", "Islampur", "Vemulawada", "Digapahandi", "Lasalgaon(Niphad)", "Madlauda", "Jagdalpur", "Banaganapalli", "Nanuta", "Kalna", "Tiruchengode", "Sri Madhopur", "Beldanga", "Rasipuram", "Pongalur", "Deoli", "Dharampuri", "Elumathur", "Kolathur", "Velur", "Jharsuguda", "Baraut", "Newasa(Ghodegaon)", "Muthur", "Gopalpatti", "Orathanadu", "Gulavati", "Betnoti", "Vayalapadu", "Jalore", "Karaikal", "Chirgaon", "Kodungalloor", "Maranelloor", "Karamadai", "Samsi", "Thandla", "Pandua", "Pipli", "Syopurkalan(F&V)", "Charama", "Bargur", "Ait", "Divai", "Adampur", "Thanabhawan", "Piravam", "Sheopurkalan", "Barpathari", "Dasuya", "Jagnair", "Ammoor", "Baruwasagar", "Budalur", "Chitwadagaon", "Gangavalli", "Karumanturai", "Palani", "Viswan", "Koratla", "Ramannapet", "Bishnupur(Bankura)", "Palakode", "Dhar", "Khanpur", "Ghatal", "Narharpur", "Jaithari", "Guskara(Burdwan)", "Bodeli(Hadod)", "Maduranthagam", "Madathukulam", "Mau(Chitrakut)", "Anchal", "Umreth", "Deoulgaon Raja", "Anaimalai", "Mansa", "Shahzadpur", "Sivagangai", "Lunkaransar", "Savner", "Imphal", "Cachar", "Madhira", "Mulakalacheruvu", "Mehta", "Yawal", "Nadiyad(Chaklasi)", "Pochampalli", "Kamlaganj", "Mandvi", "Palladam", "Mannar", "Saraskana", "Rura", "Sathur", "Jasvantnagar", "Surajgarh", "Bindki", "Singampuneri", "Khatra", "Tiruvennainallur", "Bardoli(Katod)", "Kangra(Jaisinghpur)", "Ruperdeeha", "Bhucho", "Habra", "Annur", "Pune(Hadapsar)", "Jalalabad", "Barmer", "Gubbi", "Kolhapur(Malkapur)", "Dhekiajuli", "Gauripur", "Bonai", "Thammampati", "Anta", "Fatehabad", "Rahata", "Gorakhpur", "Bhanjanagar", "Thiruppananthal", "Parlakhemundi", "Dera Baba Nanak", "Gangoh", "Jorhat", "Sunguvarchatram", "Kalanaur", "Ponner", "Harike", "Doraha", "Kunnathur", "Chhibramau(Kannuj)", "Pratappur", "Kangra(Jassour)", "Patti", "Bishalgarh", "Kharupetia", "Thirumangalam", "Chevella", "Kashipur", "Chikli(Khorgam)", "Udumalpet", "Bhuntar", "Chengalpattu", "Vikkiravandi", "Vellakkoil", "Taura", "Pune", "Robertsganj", "Balarampur", "Mangkolemba", "Ettumanoor", "Javer", "Atrauli", "Papparapatti", "Parassala", "Kaliyanchanda", "Kasinagar", "Port Blair", "Khambhat(Grain Market)", "Purulia", "Thanjavur", "Irinjalakkuda", "Taliparamba", "Kanchipuram", "Bodeli", "Bagpat", "Kondotty", "Dehradoon", "Kolhapur", "S.Mandvi", "Pollachi", "Vellore"];
 
-      const commodities = ["-- Select Commodity --", "Mushk Budji Rice", "Amaranth Seed", "Arhar", "Arhar Dal Split", "Bajra", "Barley", "Barnyard Millet", "Basmati rice", "Browntop Millet", "Buck Wheat", "Chakhao Or Black Rice", "Chana Dal Split", "Chana whole", "Foxtail Millet", "Horse Gram", "Jowar", "Kabuli Chana Whole", "Khesari Dal", "Kodo Millet", "Little Millet", "Lobia", "Maize", "Masoor whole", "Moong Dal Split", "Moong whole", "Moth", "Oats Raw", "Paddy", "Proso Millet", "Ragi", "Rajma", "Urad Dal Split", "Urad whole", "Wheat", "White Peas", "Castor seed", "Cotton Seed", "Kusum seed", "Linseed", "Mustard seed", "Neem Seeds", "Nigar Seed", "Peanut kernel", "Pongam seeds", "Rapeseed", "Sal Seed", "Sesame seed", "Soyabean", "Sunflower seed", "Amla", "Apple", "Apricot", "Avocado", "Baji Banana", "Banana", "Ber", "Bilimbi", "Breadfruit", "Cherry Red / Black", "Custard apple", "Garcinia", "Grapefruit", "Grapes", "Guava", "Jackfruit", "Jamun", "Kinnow", "Kiwi", "Lady Finger Banana", "Lemon", "Litchi", "Mango", "Mangosteen", "Mootty Fruit", "Musk melon", "Mysore Banana", "Orange", "Papaya", "Papaya Raw", "Passion Fruit", "Peach", "Pear", "Pineapple", "Plum", "Pomegranate", "Rambutan", "Raw Mango", "Red Banana", "Sapota", "Sarda", "Soursop", "Stawberries", "Sweet orange", "Watermelon", "Aloe Vera", "Arrowroot", "Banana Raw", "Beetroot", "Bhindi/Okra", "Bitter gourd", "Bottle gourd", "Brinjal", "Broccoli/Calabrese", "Button Mushroom", "Cabbage", "Capsicum", "Carrots", "Cauliflower", "Cluster beans", "Colocasia vegetable", "Coriander leaves", "Cucumber", "Curry Leaves", "Drumstick", "Fenugreek Leaves", "Garlic", "Gherkin", "Ginger", "Green Amaranthus", "Green chillies", "Ivy gourd", "Jimikand (Suran)", "Lesser yam", "Lobia Pods", "Lotus Stem", "Mint Leaves", "Mustard leaf", "Onion", "Oyster Mushroom", "Pea", "Pointed gourd", "Potato", "Pumpkin", "Raw Turmeric", "Red Amaranthus", "Reddish", "Ribbed celery", "Ridge Gourd", "Round chilli", "Safed Petha", "Sem", "Snake Guard", "Snow Mountain Garlic", "Spinach", "Sponge Gourd", "Spring Onion", "Sugar Snap Peas", "Sweet Corn", "Sweet potato", "Tapioca", "Tinda", "Tomato", "Winged bean", "Ajwain", "Black Pepper Whole", "Cardamoms Whole", "Cloves Whole", "Coriander whole", "Cumin", "Dried Raw Mango Slices", "Dry Ginger", "Fennel seed", "Fenugreek seed", "Large cardamom", "Mace Whole", "Poppy Seed", "Red chilli", "Tejpata", "Turmeric", "Almond Kernel", "Anthurium", "Areca nut (betel nut)", "Bamboo", "Banana Stem", "Betel leaves", "Carnation", "Chhappan Kaddu", "Chironji", "Chrysanthemum", "Coconut", "Coconut with Husk", "Cotton", "Gerbera", "Ginger Seed", "Gladiolus", "Green Henna Leaf", "Groundnut with pods", "Guar seed", "Hilsa", "Isabgol", "Jack Fruit Seed", "Jaggery", "Jute Seeds", "Khandsari", "Lily", "Mahua flower", "Mahua Seed", "Marigold", "Nutmeg Whole", "Persimmon", "Pinenut", "Raisins", "Raw Arrowroot Powder", "Raw Cashew nut", "Raw Coffee Beans", "Raw Honey", "Raw Jute", "Rittha", "Rose Cut Flower", "Safed Musli", "Saffron", "Silk Cocoon", "Spray Chrysanthemum", "Tamarind", "Tender coconut", "Tuberose", "Tulip", "Walnut Kernel", "Walnuts Inshell"
+      const commodity = ["-- Select Commodity --", "Mushk Budji Rice", "Amaranth Seed", "Arhar", "Arhar Dal Split", "Bajra", "Barley", "Barnyard Millet", "Basmati rice", "Browntop Millet", "Buck Wheat", "Chakhao Or Black Rice", "Chana Dal Split", "Chana whole", "Foxtail Millet", "Horse Gram", "Jowar", "Kabuli Chana Whole", "Khesari Dal", "Kodo Millet", "Little Millet", "Lobia", "Maize", "Masoor whole", "Moong Dal Split", "Moong whole", "Moth", "Oats Raw", "Paddy", "Proso Millet", "Ragi", "Rajma", "Urad Dal Split", "Urad whole", "Wheat", "White Peas", "Castor seed", "Cotton Seed", "Kusum seed", "Linseed", "Mustard seed", "Neem Seeds", "Nigar Seed", "Peanut kernel", "Pongam seeds", "Rapeseed", "Sal Seed", "Sesame seed", "Soyabean", "Sunflower seed", "Amla", "Apple", "Apricot", "Avocado", "Baji Banana", "Banana", "Ber", "Bilimbi", "Breadfruit", "Cherry Red / Black", "Custard apple", "Garcinia", "Grapefruit", "Grapes", "Guava", "Jackfruit", "Jamun", "Kinnow", "Kiwi", "Lady Finger Banana", "Lemon", "Litchi", "Mango", "Mangosteen", "Mootty Fruit", "Musk melon", "Mysore Banana", "Orange", "Papaya", "Papaya Raw", "Passion Fruit", "Peach", "Pear", "Pineapple", "Plum", "Pomegranate", "Rambutan", "Raw Mango", "Red Banana", "Sapota", "Sarda", "Soursop", "Stawberries", "Sweet orange", "Watermelon", "Aloe Vera", "Arrowroot", "Banana Raw", "Beetroot", "Bhindi/Okra", "Bitter gourd", "Bottle gourd", "Brinjal", "Broccoli/Calabrese", "Button Mushroom", "Cabbage", "Capsicum", "Carrots", "Cauliflower", "Cluster beans", "Colocasia vegetable", "Coriander leaves", "Cucumber", "Curry Leaves", "Drumstick", "Fenugreek Leaves", "Garlic", "Gherkin", "Ginger", "Green Amaranthus", "Green chillies", "Ivy gourd", "Jimikand (Suran)", "Lesser yam", "Lobia Pods", "Lotus Stem", "Mint Leaves", "Mustard leaf", "Onion", "Oyster Mushroom", "Pea", "Pointed gourd", "Potato", "Pumpkin", "Raw Turmeric", "Red Amaranthus", "Reddish", "Ribbed celery", "Ridge Gourd", "Round chilli", "Safed Petha", "Sem", "Snake Guard", "Snow Mountain Garlic", "Spinach", "Sponge Gourd", "Spring Onion", "Sugar Snap Peas", "Sweet Corn", "Sweet potato", "Tapioca", "Tinda", "Tomato", "Winged bean", "Ajwain", "Black Pepper Whole", "Cardamoms Whole", "Cloves Whole", "Coriander whole", "Cumin", "Dried Raw Mango Slices", "Dry Ginger", "Fennel seed", "Fenugreek seed", "Large cardamom", "Mace Whole", "Poppy Seed", "Red chilli", "Tejpata", "Turmeric", "Almond Kernel", "Anthurium", "Areca nut (betel nut)", "Bamboo", "Banana Stem", "Betel leaves", "Carnation", "Chhappan Kaddu", "Chironji", "Chrysanthemum", "Coconut", "Coconut with Husk", "Cotton", "Gerbera", "Ginger Seed", "Gladiolus", "Green Henna Leaf", "Groundnut with pods", "Guar seed", "Hilsa", "Isabgol", "Jack Fruit Seed", "Jaggery", "Jute Seeds", "Khandsari", "Lily", "Mahua flower", "Mahua Seed", "Marigold", "Nutmeg Whole", "Persimmon", "Pinenut", "Raisins", "Raw Arrowroot Powder", "Raw Cashew nut", "Raw Coffee Beans", "Raw Honey", "Raw Jute", "Rittha", "Rose Cut Flower", "Safed Musli", "Saffron", "Silk Cocoon", "Spray Chrysanthemum", "Tamarind", "Tender coconut", "Tuberose", "Tulip", "Walnut Kernel", "Walnuts Inshell"
       ];
 
       // Populate dropdown options
       const stateSelect = document.getElementById('state');
       const districtSelect = document.getElementById('district');
-      const apmcsSelect = document.getElementById('apmcs');
+      const mandiSelect = document.getElementById('mandi');
       const commoditySelect = document.getElementById('commodity');
 
       // Function to populate options
@@ -889,22 +948,22 @@
 
       populateOptions(stateSelect, states);
       populateOptions(districtSelect, districts);
-      populateOptions(apmcsSelect, apmcs);
-      populateOptions(commoditySelect, commodities);
+      populateOptions(mandiSelect, mandi);
+      populateOptions(commoditySelect, commodity);
 
       // Handle form submission
       const form = document.querySelector('form');
       form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent the form from submitting normally
+        // event.preventDefault(); // Prevent the form from submitting normally
 
         const selectedState = stateSelect.value;
         const selectedDistrict = districtSelect.value;
-        const selectedApmcs = apmcsSelect.value;
+        const selectedMandi = mandiSelect.value;
         const selectedCommodity = commoditySelect.value;
 
         console.log('Selected State:', selectedState);
         console.log('Selected District:', selectedDistrict);
-        console.log('Selected APMCs:', selectedApmcs);
+        console.log('Selected Mandi:', selectedMandi);
         console.log('Selected Commodity:', selectedCommodity);
 
         // You can replace the above with an actual form submission or other logic
