@@ -23,8 +23,8 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class="g-sidenav-show  bg-gray-100">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start " id="sidenav-main">
+<body class="g-sidenav-show bg-gray-100">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start" id="sidenav-main" > 
     <style>
       /* For Chrome, Safari, and other WebKit browsers */
       #sidenav-main {
@@ -45,8 +45,24 @@
     max-width: 100%;
     box-sizing: border-box; /* Ensure padding/margin don't cause overflow */
 }
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
 
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
 
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
     </style>
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -54,10 +70,10 @@
         <span class="font-weight-bold text-lg">KRISHIDOOT</span>
       </a>
     </div>
-    <div class="collapse navbar-collapse px-4 " id="sidenav-collapse-main" style=" height: 88%;">
+    <div class="collapse navbar-collapse px-4 " id="sidenav-collapse-main" style=" height: 90%;">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  active" href="{% url 'dashboard' %}">
+          <a class="nav-link" href="{% url 'dashboard' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>dashboard</title>
@@ -125,7 +141,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="{% url 'mandi' %}">
+          <a class="nav-link active" href="{% url 'mandi' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>rtl</title>
@@ -142,7 +158,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="{% url 'weather' %}">
+          <a class="nav-link " href="{% url 'weather' %}">
             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
               <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>rtl</title>
@@ -156,6 +172,23 @@
               </svg>
             </div>
             <span class="nav-link-text ms-1">Weather</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'soilAnalysis' %}">
+            <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+              <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>rtl</title>
+                <g id="rtl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="menu-alt-3" transform="translate(12.000000, 14.000000)" fill="#FFFFFF">
+                    <path class="color-foreground" d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z" id="Path"></path>
+                    <path class="color-background" d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z" id="Path"></path>
+                    <path class="color-background" d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z" id="Path"></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1">AI Khetiguru </span>
           </a>
         </li>
         <li class="nav-item mt-2">
@@ -182,6 +215,91 @@
           </a>
         </li>
       </ul>
+      <div class="center-container">
+        <a href="{% url 'logout_view' %}" class="nav-link position-relative ms-0 py-2 ps-2">
+          <button class="Btn">
+            <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+            <div class="text">Logout</div>
+          </button>
+        </a>
+        <style>
+          /* From Uiverse.io by Lealdos */ 
+        /* From Uiverse.io by TomMussard */ 
+        .Btn {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 45px;
+          height: 45px;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          transition-duration: .3s;
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+          background-color: #774dd3;
+        }
+        
+        /* plus sign */
+        .sign {
+          width: 100%;
+          transition-duration: .3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        .sign svg {
+          width: 17px;
+        }
+        
+        .sign svg path {
+          fill: white;
+        }
+        /* text */
+        .text {
+          position: absolute;
+          right: 0%;
+          width: 0%;
+          opacity: 0;
+          color: white;
+          font-size: 1.2em;
+          font-weight: 600;
+          transition-duration: .3s;
+        }
+        /* hover effect on button width */
+        .Btn:hover {
+          width: 125px;
+          border-radius: 40px;
+          transition-duration: .3s;
+        }
+        
+        .Btn:hover .sign {
+          width: 30%;
+          transition-duration: .3s;
+          padding-left: 20px;
+        }
+        /* hover effect button's text */
+        .Btn:hover .text {
+          opacity: 1;
+          width: 70%;
+          transition-duration: .3s;
+          padding-right: 10px;
+        }
+        /* button click effect*/
+        .Btn:active {
+          transform: translate(2px ,2px);
+        }
+        
+        .center-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 40vh; /* Adjust height as needed */
+        }
+        </style>
+      </div>
     </div>
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">

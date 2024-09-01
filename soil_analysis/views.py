@@ -212,17 +212,16 @@ def soil_analysis(request):
                 'generated_text': generated_text,
                 'soil_report_text': soil_report_text
             }
-            return render(request, 'soil_analysis.html', context)
+            return render(request, 'pdf.html', context)
         
         except Exception as e:
-            return render(request, 'soil_analysis.html', {'error': str(e)})
+            return render(request, 'pdf.html', {'error': str(e)})
         
         finally:
             # Cleanup temp file
             if os.path.exists(pdf_path):
                 os.remove(pdf_path)
     
-    return render(request, 'upload_soil_report.html')
-
+    return render(request, 'pdf.html')
 
 
