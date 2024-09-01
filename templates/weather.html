@@ -648,7 +648,7 @@
                 <div class="weather-info">
                     <!-- Weather Block -->
                     <div class="weather-block">
-                        <img src="cloud-icon.png" alt="Weather Icon" class="weather-icon">
+                        <img src="{% static 'assests/img/weather.svg'%}" alt="Weather Icon" class="weather-icon">
                         <div class="temperature">Temperature</div>
                         <div class="description">Weather Description</div>
                     </div>
@@ -713,7 +713,7 @@
               <div class="day-temperature">Temperature</div>
               <div class="day-description">Description</div>
           </div>
-          
+
                     <!-- Repeat .day-block for each day -->
                 </div>
             </div>
@@ -757,8 +757,6 @@
             console.error('Error fetching weather data:', error);
         }
     }
-
-    // Call the function with the user's location
     fetchWeather('auto:ip');
 </script>
 
