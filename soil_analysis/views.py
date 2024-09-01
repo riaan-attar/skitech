@@ -84,67 +84,76 @@ def disease_info(request):
     return render(request, 'diseases.html')
 # Create your views here.
 
+from django.shortcuts import render
+import os
+import pickle
+import numpy as np
+from django.http import HttpResponse
+from soil_analysis.utils import base64_image, format_generated_text, generate_content
+
 def crop_recommendation(request):
-    # Define the path to the model
     model_path = 'soil_analysis/Random_Forest_model.pkl'
-    
-    # Check if the model file exists and load it
+
     if os.path.exists(model_path):
         with open(model_path, 'rb') as file:
             model = pickle.load(file)
     else:
         return HttpResponse(f"Model file not found at {model_path}", status=404)
-    
+
     if request.method == 'POST':
-        
-        nitrogen = float(request.POST.get('nitrogen', 0))
-        phosphorus = float(request.POST.get('phosphorus', 0))
-        potassium = float(request.POST.get('potassium', 0))
-        temperature = float(request.POST.get('temperature', 0))
-        humidity = float(request.POST.get('humidity', 0))
-        ph = float(request.POST.get('ph', 0))
-        rainfall = float(request.POST.get('rainfall', 0))
-        
-        features = np.array([[nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall]])
-    
         try:
+            nitrogen = float(request.POST.get('nitrogen', 0))
+            phosphorus = float(request.POST.get('phosphorus', 0))
+            potassium = float(request.POST.get('potassium', 0))
+            temperature = float(request.POST.get('temperature', 0))
+            humidity = float(request.POST.get('humidity', 0))
+            ph = float(request.POST.get('ph', 0))
+            rainfall = float(request.POST.get('rainfall', 0))
+
+            # Constraints for the input values
+            if not (0 <= nitrogen <= 300 and 0 <= phosphorus <= 300 and 0 <= potassium <= 300 and
+                    0 <= temperature <= 60 and 0 <= humidity <= 100 and 0 <= ph <= 14 and
+                    0 <= rainfall <= 2000):
+                return HttpResponse("Invalid input values", status=400)
+
+            features = np.array([[nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall]])
+
             predicted_crop = model.predict(features)[0]
-            
-            # Prepare the prompts
-            prompts = {
-                "fertilizer": (
-                    f"assume you are an expert in all things related to agriculture and you have been asked to recommend "
-                    f"fertilizer type for a crop {predicted_crop} for soil having nitrogen {nitrogen}kg/ha, "
-                    f"phosphorus {phosphorus}kg/ha, potassium {potassium}kg/ha, and pH {ph} in a region where "
-                    f"humidity is {humidity}% and rainfall is {rainfall}mm. Return the response in less than one hundred "
-                    f"words without using special characters."
-                ),
-                "best_practice": (
-                    f"assume you are an expert in all things related to agriculture and you have been asked to recommend "
-                    f"best practices for growing crop {predicted_crop} in soil with nitrogen {nitrogen}kg/ha, "
-                    f"phosphorus {phosphorus}kg/ha, potassium {potassium}kg/ha, and pH {ph}. The region has "
-                    f"humidity of {humidity}% and rainfall of {rainfall}mm. Return the response in less than one hundred "
-                    f"words without using special characters."
-                )
-            }
+
+            maturation_time = 100  # Example: Adjust this based on the crop
+
+            feasibility_prompt = (
+                f"Given the soil with nitrogen {nitrogen}kg/ha, phosphorus {phosphorus}kg/ha, "
+                f"potassium {potassium}kg/ha, and pH {ph}, the crop {predicted_crop} "
+                f"would have a maturation time of {maturation_time} days. The region has "
+                f"humidity {humidity}% and rainfall {rainfall}mm. Is this crop feasible in these conditions?"
+            )
+            fertilizer_prompt = (
+                f"Assume you are an expert in agriculture. Recommend a fertilizer for the crop {predicted_crop} "
+                f"given the soil has nitrogen {nitrogen}kg/ha, phosphorus {phosphorus}kg/ha, "
+                f"potassium {potassium}kg/ha, and pH {ph}. The region has humidity {humidity}% and "
+                f"rainfall {rainfall}mm."
+            )
+            best_practice_prompt = (
+                f"Assume you are an expert in agriculture. Recommend best practices for growing the crop {predicted_crop} "
+                f"in soil with nitrogen {nitrogen}kg/ha, phosphorus {phosphorus}kg/ha, potassium {potassium}kg/ha, "
+                f"and pH {ph}. The region has humidity of {humidity}% and rainfall of {rainfall}mm."
+            )
 
             api_key = os.getenv("GOOGLE_API_KEY")
+
+            feasibility = generate_content(feasibility_prompt, api_key)
+            fertilizer = generate_content(fertilizer_prompt, api_key)
+            best_practice = generate_content(best_practice_prompt, api_key)
             image_url = f'static/crop_images/{predicted_crop}.jpg'
             image_base64 = base64_image(image_url)
-            # Call the generate_content function for each prompt
-            fert = generate_content(prompts["fertilizer"], api_key)
-            best_ = generate_content(prompts["best_practice"], api_key)
-            
-            # Format the generated text
-            fertilizer = format_generated_text(fert)
-            best_practice = format_generated_text(best_)
-            
-            # Prepare the context
+
             context = {
-                'predicted_crop': predicted_crop,
+                'crop': predicted_crop,
                 'image': image_base64,
-                'fertilizer': fertilizer,
-                'best_practice': best_practice,
+                'feasibility': format_generated_text(feasibility),
+                'fertilizer': format_generated_text(fertilizer),
+                'best_practice': format_generated_text(best_practice),
                 'nitrogen': nitrogen,
                 'phosphorus': phosphorus,
                 'potassium': potassium,
@@ -153,10 +162,13 @@ def crop_recommendation(request):
                 'ph': ph,
                 'rainfall': rainfall
             }
+            return render(request, 'croprecom.html', context)
 
+        except ValueError:
+            return HttpResponse("Invalid input format", status=400)
         except Exception as e:
-            return HttpResponse(f"Error making prediction: {str(e)}", status=500)     
-        return render(request, 'croprecom.html', context)
+            return HttpResponse(f"Error making prediction: {str(e)}", status=500)
+
     return render(request, 'crop_recommendation_form.html')
 
 def soil_analysis(request):
