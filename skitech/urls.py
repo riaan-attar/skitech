@@ -52,6 +52,7 @@ urlpatterns = [
     path('place_order/',u.place_order,name ='place_order'),
     path('headline_list/', e.headlines_list, name='headline_list'),
     path('msp/',a.msp,name = 'msp'),
+    path('work_plan/',s.work_plan,name='work_plan')
 
     
 ]

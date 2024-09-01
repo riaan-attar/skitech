@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Work Plan Form</title>
+</head>
+<body>
+    <h1>Create an Agricultural Work Plan</h1>
+    <form method="POST" action="{% url 'work_plan' %}">
+        {% csrf_token %}
+        
+        <label for="former_crop">Previous Crop 1:</label>
+        <input type="text" id="former_crop" name="former_crop" required><br><br>
+
+        <label for="former_crop2">Previous Crop 2:</label>
+        <input type="text" id="former_crop2" name="former_crop2"><br><br>
+
+        <label for="former_crop3">Previous Crop 3:</label>
+        <input type="text" id="former_crop3" name="former_crop3"><br><br>
+
+        <label for="description">Past Farming Practices:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+
+        <button type="submit">Generate Work Plan</button>
+    </form>
+</body>
+</html>
