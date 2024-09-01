@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'inventory',
     'market',
     'news',
+    'forum',
 ]
 
 MIDDLEWARE = [
