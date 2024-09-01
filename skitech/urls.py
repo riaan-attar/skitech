@@ -22,6 +22,7 @@ from iot_data import views as i
 from inventory import views as n 
 from market import views as m
 from news import views as e
+from mandi import views as a
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', u.landing, name = 'landing'),
@@ -50,6 +51,7 @@ urlpatterns = [
     path('order_list',u.order_list,name = 'order_list'),
     path('place_order/',u.place_order,name ='place_order'),
     path('headline_list/', e.headlines_list, name='headline_list'),
+    path('msp/',a.msp,name = 'msp'),
 
     
 ]

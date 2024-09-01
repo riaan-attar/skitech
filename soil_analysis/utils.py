@@ -98,7 +98,7 @@ from django.conf import settings
 import dotenv
 import json
 dotenv.load_dotenv()
-
+api_key = os.getenv('GOOGLE_API_KEY')
 
 def generate_content(prompt, api_key):
     """
