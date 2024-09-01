@@ -461,85 +461,58 @@
         <!-- End Navbar -->
         <main class="container mx-auto py-8 px-4">
           <!-- Weather Forecast Section -->
-              <div class="bg-white p-6 rounded-lg">
-                  <h2 class="text-2xl font-bold text-center">Today's Weather Forecast</h2>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Weather Block -->
-                    <div class="bg-white p-6 rounded-lg flex flex-col items-center">
-                        <img src="cloud-icon.png" alt="Weather Icon" class="w-16 h-16">
-                        <div class="text-4xl font-bold mt-2">--°C</div>
-                        <div class="text-gray-600 mt-2">Loading...</div>
-                    </div>
-                
-                    <!-- Humidity and Sunrise/Sunset Block -->
-                    <div class="bg-white p-6 rounded-lg flex flex-col justify-center">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Humidity at 8:30 AM:</span>
-                            <span>--%</span>
-                        </div>
-                        <div class="flex justify-between mt-2">
-                            <span class="text-gray-600">Humidity at 5:30 PM:</span>
-                            <span>--%</span>
-                        </div>
-                        <div class="flex justify-between mt-2">
-                            <span class="text-gray-600">Sunrise Time:</span>
-                            <span>--:--</span>
-                        </div>
-                        <div class="flex justify-between mt-2">
-                            <span class="text-gray-600">Sunset Time:</span>
-                            <span>--:--</span>
-                        </div>
-                    </div>
-                </div>
-                
-                      <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
-                          <!-- Repeat this block for each day -->
-                          <div class="text-center bg-white p-4 rounded-lg md">
-                              <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
-                              <div class="font-semibold">Loading...</div>
-                              <div class="text-gray-600">--°C</div>
-                              <div class="text-gray-600">Loading...</div>
-                          </div>
-                          <!-- Repeat similar blocks for the remaining days -->
-                          <div class="text-center bg-white p-4 rounded-lg md">
-                            <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
-                            <div class="font-semibold">Loading...</div>
-                            <div class="text-gray-600">--°C</div>
-                            <div class="text-gray-600">Loading...</div>
-                        </div>
-                        <div class="text-center bg-white p-4 rounded-lg md">
-                          <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
-                          <div class="font-semibold">Loading...</div>
-                          <div class="text-gray-600">--°C</div>
-                          <div class="text-gray-600">Loading...</div>
+          <div class="bg-white p-6 rounded-lg">
+              <h2 class="text-2xl font-bold text-center">Today's Weather Forecast</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                  <!-- Weather Block -->
+                  <div class="bg-white p-6 rounded-lg flex flex-col items-center">
+                      <img src="cloud-icon.png" alt="Weather Icon" class="w-16 h-16">
+                      <div class="text-4xl font-bold mt-2">--°C</div>
+                      <div class="text-gray-600 mt-2">Loading...</div>
+                  </div>
+      
+                  <!-- Humidity and Sunrise/Sunset Block -->
+                  <div class="bg-white p-6 rounded-lg flex flex-col justify-center">
+                      <div class="flex justify-between">
+                          <span class="text-gray-600">Humidity at 8:30 AM:</span>
+                          <span>--%</span>
                       </div>
-                      <div class="text-center bg-white p-4 rounded-lg md">
-                        <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
-                        <div class="font-semibold">Loading...</div>
-                        <div class="text-gray-600">--°C</div>
-                        <div class="text-gray-600">Loading...</div>
-                    </div>
-                    <div class="text-center bg-white p-4 rounded-lg md">
+                      <div class="flex justify-between mt-2">
+                          <span class="text-gray-600">Humidity at 5:30 PM:</span>
+                          <span>--%</span>
+                      </div>
+                      <div class="flex justify-between mt-2">
+                          <span class="text-gray-600">Sunrise Time:</span>
+                          <span>--:--</span>
+                      </div>
+                      <div class="flex justify-between mt-2">
+                          <span class="text-gray-600">Sunset Time:</span>
+                          <span>--:--</span>
+                      </div>
+                  </div>
+              </div>
+      
+              <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mt-6">
+                  <!-- 7-Day Forecast Blocks -->
+                  <!-- Repeat this block for each day -->
+                  <div class="text-center bg-white p-4 rounded-lg">
                       <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
                       <div class="font-semibold">Loading...</div>
                       <div class="text-gray-600">--°C</div>
                       <div class="text-gray-600">Loading...</div>
                   </div>
-                  <div class="text-center bg-white p-4 rounded-lg md">
-                    <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
-                    <div class="font-semibold">Loading...</div>
-                    <div class="text-gray-600">--°C</div>
-                    <div class="text-gray-600">Loading...</div>
-                </div>
-                <div class="text-center bg-white p-4 rounded-lg md">
-                  <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
-                  <div class="font-semibold">Loading...</div>
-                  <div class="text-gray-600">--°C</div>
-                  <div class="text-gray-600">Loading...</div>
-                </div>
-               </div>
+                  <!-- Additional blocks for the remaining days -->
+                  <div class="text-center bg-white p-4 rounded-lg">
+                      <img src="cloud-icon.png" alt="Weather Icon" class="w-12 h-12 mx-auto">
+                      <div class="font-semibold">Loading...</div>
+                      <div class="text-gray-600">--°C</div>
+                      <div class="text-gray-600">Loading...</div>
+                  </div>
+                  <!-- Repeat similar blocks for the remaining days -->
               </div>
+          </div>
       </main>
+      
       
         <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
         <script src="https://mediafiles.botpress.cloud/1a7a7072-c1fb-4755-859a-a82cb9c017e8/webchat/v2.1/config.js"></script>

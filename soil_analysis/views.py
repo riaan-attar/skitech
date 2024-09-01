@@ -155,10 +155,8 @@ def crop_recommendation(request):
             }
 
         except Exception as e:
-            return HttpResponse(f"Error making prediction: {str(e)}", status=500)
-        
+            return HttpResponse(f"Error making prediction: {str(e)}", status=500)     
         return render(request, 'croprecom.html', context)
-    
     return render(request, 'crop_recommendation_form.html')
 
 def soil_analysis(request):
