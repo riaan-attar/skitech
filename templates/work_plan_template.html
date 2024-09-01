@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agricultural Work Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1, h2, h3 {
+            color: #2a7ae2;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agricultural Work Plan</h1>
+    <p>Date: {{ current_date }}</p>
+    
+    <div class="section">
+        {{ work_plan_content|safe }}
+    </div>
+    
+    <footer>
+        <p>Generated on {{ current_year }}</p>
+    </footer>
+</body>
+</html>

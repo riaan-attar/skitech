@@ -12,7 +12,15 @@ from django.http import JsonResponse
 from sklearn.ensemble import RandomForestClassifier 
 import base64
 from io import BytesIO
-from django.core.files.base import ContentFile 
+from django.core.files.base import ContentFile
+import numpy as np
+from io import BytesIO
+from datetime import datetime
+from django.shortcuts import render
+from django.http import HttpResponse
+
+from django.template.loader import render_to_string
+from django.conf import settings 
 dotenv.load_dotenv()
 
 def disease_info(request):
@@ -135,7 +143,16 @@ def crop_recommendation(request):
             image_url_1 = f'static/crop_images/{crop_1}.jpg'
             image_url_2 = f'static/crop_images/{crop_2}.jpg'
             image_url_3 = f'static/crop_images/{crop_3}.jpg'
-
+            request.session['best_crops'] = top_3_crops
+            request.session['nitrogen'] = nitrogen
+            request.session['phosphorus'] = phosphorus
+            request.session['potassium'] = potassium
+            request.session['temperature'] = temperature
+            request.session['humidity'] = humidity
+            request.session['ph'] = ph
+            request.session['rainfall'] = rainfall
+    
+            
             prompts = {
                 "maturation1": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a rough maturation period of {crop_1} in one line, strictly avoid use of special characters such as \\n or ##.",
                 "maturation2": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a rough maturation period of {crop_2} in one line, strictly avoid use of special characters such as \\n or ##.",
@@ -154,7 +171,7 @@ def crop_recommendation(request):
 
             maturation_time_3 = generate_content(prompts["maturation3"], api_key)
             feasibility_3 = generate_content(prompts["feasibility3"], api_key)
-
+            
             # Prepare crop information
             crop_info_1 = {
                 'crop': crop_1,
@@ -197,6 +214,108 @@ def crop_recommendation(request):
             return HttpResponse(f"Error making prediction: {str(e)}", status=500)
 
     return render(request, 'crop_recommendation_form.html')
+
+
+from django.shortcuts import render
+from django.http import HttpResponse
+from datetime import datetime
+from .utils import generate_content, api_key
+from .utils import render_to_pdf  # Ensure this import matches your project structure
+
+def work_plan(request):
+    if request.method == 'POST':
+        # Retrieve form data
+        fcrop1 = request.POST.get('former_crop')
+        fcrop2 = request.POST.get('former_crop2')
+        fcrop3 = request.POST.get('former_crop3')
+        past_practices = request.POST.get('description')
+
+        # Retrieve session data
+        crop_recommendations = request.session.get('best_crops', [])
+        soil_data = {
+            'nitrogen': request.session.get('nitrogen'),
+            'phosphorus': request.session.get('phosphorus'),
+            'potassium': request.session.get('potassium'),
+            'temperature': request.session.get('temperature'),
+            'humidity': request.session.get('humidity'),
+            'ph': request.session.get('ph'),
+            'rainfall': request.session.get('rainfall'),
+        }
+
+        # Ensure required data is available
+        if len(crop_recommendations) < 1 or not all(soil_data.values()):
+            return HttpResponse("Required data is missing.", status=400)
+
+        # Construct the prompt
+        prompt = f"""
+        You are an expert agronomist specializing in sustainable and profitable farming practices in India.
+
+        Based on the following information, create a comprehensive and detailed agricultural work plan:
+
+        **Current Cropping Details:**
+        - Previous Crops: {fcrop1}, {fcrop2}, {fcrop3}
+        - Past Farming Practices: {past_practices}
+
+        **Soil and Environmental Conditions:**
+        - Nitrogen Level: {soil_data['nitrogen']} mg/kg
+        - Phosphorus Level: {soil_data['phosphorus']} mg/kg
+        - Potassium Level: {soil_data['potassium']} mg/kg
+        - Temperature: {soil_data['temperature']}°C
+        - Humidity: {soil_data['humidity']}%
+        - pH Level: {soil_data['ph']}
+        - Rainfall: {soil_data['rainfall']} mm/year
+
+        **Recommended Crops for Transition:**
+        - Primary Target Crop: {crop_recommendations[0]}
+        - Secondary Crops: {', '.join(crop_recommendations[1:]) if len(crop_recommendations) > 1 else 'N/A'}
+
+        **Work Plan Requirements:**
+        - Develop a gradual transition plan from the existing crops to the recommended crops over appropriate timeframes.
+        - Include detailed strategies for soil building and improvement, including specific techniques and amendments.
+        - Outline methods for maximizing profits during and after the transition, considering market trends and crop demands.
+        - Suggest simultaneous planting schemes that allow for effective and efficient transition while minimizing risks.
+        - Provide seasonal schedules, resource requirements, and risk mitigation strategies.
+        - Structure the plan into clear sections with headings and subheadings for easy understanding.
+
+        **Format:**
+        Present the work plan in a structured format with sections such as:
+        1. Introduction
+        2. Soil Analysis and Improvement Strategies
+        3. Transition Plan Overview
+        4. Detailed Crop Transition Schedule
+        5. Profit Maximization Strategies
+        6. Simultaneous Planting Schemes
+        7. Resource and Labor Management
+        8. Risk Assessment and Mitigation
+        9. Conclusion
+
+        Ensure that each section contains detailed and actionable information tailored to the provided conditions and requirements. Use clear and professional language suitable for implementation by farmers and agricultural planners.
+        make sure to give appropraite spacing in between sections , and dont ask farme to do research on trends or anything you are supposed to be solution so you must give a suggestion,no disclaimer strictly,also format the the text using html tags such as new line and bold tags.
+        """
+
+        # Generate the work plan content
+        work_plan_content = generate_content(prompt, api_key)
+
+        if not work_plan_content:
+            return HttpResponse("Failed to generate work plan content.", status=500)
+
+        # Generate PDF from the content
+        context = {
+            'work_plan_content': work_plan_content,
+            'current_date': datetime.now().strftime("%B %d, %Y"),
+            'current_year': datetime.now().year,
+        }
+        pdf_file = render_to_pdf('work_plan_template.html', context, request)
+
+        if pdf_file:
+            response = HttpResponse(pdf_file, content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename="Agricultural_Work_Plan.pdf"'
+            return response
+        else:
+            return HttpResponse("Error generating PDF.", status=500)
+
+    else:
+        return render(request, 'work_plan_form.html')
 def soil_analysis(request):
     if request.method == 'POST':
         # Handle the uploaded PDF file
@@ -258,6 +377,6 @@ def soil_analysis(request):
             if os.path.exists(pdf_path):
                 os.remove(pdf_path)
     
-    return render(request, 'pdf.html')
+    return render(request, 'pdf1.html')
 
 

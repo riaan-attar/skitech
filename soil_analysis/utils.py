@@ -16,6 +16,14 @@ import base64
 from io import BytesIO
 from django.core.files.base import ContentFile
 from django.core.exceptions import ValidationError
+import numpy as np
+from io import BytesIO
+from datetime import datetime
+from django.shortcuts import render
+from django.http import HttpResponse
+
+from django.template.loader import render_to_string
+from django.conf import settings 
 # List of class labels
 class_labels = [
     'Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rust', 'Apple___healthy',
@@ -180,3 +188,16 @@ def extract_info_from_combined_response(response, info_type):
         # Extract best practices
         pass
     return ""
+
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from io import BytesIO
+from xhtml2pdf import pisa
+
+def render_to_pdf(template_src, context_dict, request):
+    template = render_to_string(template_src, context_dict)
+    result = BytesIO()
+    pdf = pisa.CreatePDF(BytesIO(template.encode("UTF-8")), dest=result)
+    if not pdf.err:
+        return result.getvalue()
+    return None
