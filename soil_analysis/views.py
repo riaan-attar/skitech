@@ -91,6 +91,13 @@ import numpy as np
 from django.http import HttpResponse
 from soil_analysis.utils import base64_image, format_generated_text, generate_content
 
+from django.shortcuts import render
+import os
+import pickle
+import numpy as np
+from django.http import HttpResponse
+from soil_analysis.utils import base64_image, format_generated_text, generate_content
+
 def crop_recommendation(request):
     model_path = 'soil_analysis/Random_Forest_model.pkl'
 
@@ -118,42 +125,62 @@ def crop_recommendation(request):
 
             features = np.array([[nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall]])
 
-            predicted_crop = model.predict(features)[0]
+            # Get the top 3 predicted crops
+            predicted_proba = model.predict_proba(features)[0]
+            top_3_indices = np.argsort(predicted_proba)[-3:][::-1]
+            top_3_crops = [model.classes_[i] for i in top_3_indices]
 
-            maturation_time = 100  # Example: Adjust this based on the crop
+            # Store crop information in different variables
+            crop_1, crop_2, crop_3 = top_3_crops[0], top_3_crops[1], top_3_crops[2]
+            image_url_1 = f'static/crop_images/{crop_1}.jpg'
+            image_url_2 = f'static/crop_images/{crop_2}.jpg'
+            image_url_3 = f'static/crop_images/{crop_3}.jpg'
 
-            feasibility_prompt = (
-                f"Given the soil with nitrogen {nitrogen}kg/ha, phosphorus {phosphorus}kg/ha, "
-                f"potassium {potassium}kg/ha, and pH {ph}, the crop {predicted_crop} "
-                f"would have a maturation time of {maturation_time} days. The region has "
-                f"humidity {humidity}% and rainfall {rainfall}mm. Is this crop feasible in these conditions?"
-            )
-            fertilizer_prompt = (
-                f"Assume you are an expert in agriculture. Recommend a fertilizer for the crop {predicted_crop} "
-                f"given the soil has nitrogen {nitrogen}kg/ha, phosphorus {phosphorus}kg/ha, "
-                f"potassium {potassium}kg/ha, and pH {ph}. The region has humidity {humidity}% and "
-                f"rainfall {rainfall}mm."
-            )
-            best_practice_prompt = (
-                f"Assume you are an expert in agriculture. Recommend best practices for growing the crop {predicted_crop} "
-                f"in soil with nitrogen {nitrogen}kg/ha, phosphorus {phosphorus}kg/ha, potassium {potassium}kg/ha, "
-                f"and pH {ph}. The region has humidity of {humidity}% and rainfall of {rainfall}mm."
-            )
+            prompts = {
+                "maturation1": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a rough maturation period of {crop_1} in one line, strictly avoid use of special characters such as \\n or ##.",
+                "maturation2": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a rough maturation period of {crop_2} in one line, strictly avoid use of special characters such as \\n or ##.",
+                "maturation3": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a rough maturation period of {crop_3} in one line, strictly avoid use of special characters such as \\n or ##.",
+                "feasibility1": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a brief feasibility analysis of {crop_1}, strictly avoid use of special characters such as \\n or ##.",
+                "feasibility2": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a brief feasibility analysis of {crop_2}, strictly avoid use of special characters such as \\n or ##.",
+                "feasibility3": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a brief feasibility analysis of {crop_3}, strictly avoid use of special characters such as \\n or ##.",
+            }
 
-            api_key = os.getenv("GOOGLE_API_KEY")
+            # Fetch content for each crop
+            maturation_time_1 = generate_content(prompts["maturation1"], api_key)
+            feasibility_1 = generate_content(prompts["feasibility1"], api_key)
 
-            feasibility = generate_content(feasibility_prompt, api_key)
-            fertilizer = generate_content(fertilizer_prompt, api_key)
-            best_practice = generate_content(best_practice_prompt, api_key)
-            image_url = f'static/crop_images/{predicted_crop}.jpg'
-            image_base64 = base64_image(image_url)
+            maturation_time_2 = generate_content(prompts["maturation2"], api_key)
+            feasibility_2 = generate_content(prompts["feasibility2"], api_key)
+
+            maturation_time_3 = generate_content(prompts["maturation3"], api_key)
+            feasibility_3 = generate_content(prompts["feasibility3"], api_key)
+
+            # Prepare crop information
+            crop_info_1 = {
+                'crop': crop_1,
+                'image': base64_image(image_url_1),
+                'maturation_time': format_generated_text(maturation_time_1),
+                'feasibility': format_generated_text(feasibility_1),
+            }
+
+            crop_info_2 = {
+                'crop': crop_2,
+                'image': base64_image(image_url_2),
+                'maturation_time': format_generated_text(maturation_time_2),
+                'feasibility': format_generated_text(feasibility_2),
+            }
+
+            crop_info_3 = {
+                'crop': crop_3,
+                'image': base64_image(image_url_3),
+                'maturation_time': format_generated_text(maturation_time_3),
+                'feasibility': format_generated_text(feasibility_3),
+            }
 
             context = {
-                'crop': predicted_crop,
-                'image': image_base64,
-                'feasibility': format_generated_text(feasibility),
-                'fertilizer': format_generated_text(fertilizer),
-                'best_practice': format_generated_text(best_practice),
+                'crop_info_1': crop_info_1,
+                'crop_info_2': crop_info_2,
+                'crop_info_3': crop_info_3,
                 'nitrogen': nitrogen,
                 'phosphorus': phosphorus,
                 'potassium': potassium,
@@ -170,7 +197,6 @@ def crop_recommendation(request):
             return HttpResponse(f"Error making prediction: {str(e)}", status=500)
 
     return render(request, 'crop_recommendation_form.html')
-
 def soil_analysis(request):
     if request.method == 'POST':
         # Handle the uploaded PDF file

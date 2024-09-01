@@ -69,7 +69,7 @@
     </style>
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand d-flex align-items-center m-0" href=" https://demos.creative-tim.com/corporate-ui-dashboa/templates/dashboard.html " target="_blank">
+      <a class="navbar-brand d-flex align-items-center m-0" href="{% url 'dashboard' %}" target="_blank">
         <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="logo-image">
         <span class="font-weight-bold text-lg">KRISHIDOOT</span>
       </a>
@@ -420,7 +420,7 @@
             </li>
             <li class="nav-item ps-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0">
-                <img src="{% static 'assets/img/team-2.jpg'}" class="avatar avatar-sm" alt="avatar" />
+                <img src="{% static 'assets/img/team-2.jpg' %}" class="avatar avatar-sm" alt="avatar" />
               </a>
             </li>
           </ul>
@@ -467,9 +467,9 @@
                 <div class="card flex-fill">
                     <div class="card-body d-flex flex-column align-items-center">
                         <img src="data:image/jpeg;base64,{{ image }}" class="img-fluid mb-3">
-                        <h5 class="card-title mb-3">Crop Name:{{ crop_1 | title }}</h5>
-                        <h5 class="card-title mb-3">Crop Name:{{ crop_2 | title }}</h5>
-                        <h5 class="card-title mb-3">Crop Name:{{ crop_3 | title }}</h5>
+                        <h5 class="card-title mb-3">Crop Name:{{ crop_info_1.crop | title }}</h5>
+                        <h5 class="card-title mb-3">Crop Name:{{ crop_info_2.crop | title }}</h5>
+                        <h5 class="card-title mb-3">Crop Name:{{ crop_info_3.crop | title }}</h5>
                         <!-- <p class="card-text text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl ac tincidunt aliquet, nunc nunc lacinia nunc, id lacinia nunc nunc auctor.</p> -->
                     </div>
                 </div>
@@ -479,14 +479,20 @@
             <div class="col-md-6 d-flex flex-column">
                 <div class="card mb-3 flex-fill">
                     <div class="card-body">
-                        <h5 class="card-title">Requirement: </h5>
-                        <p class="card-text">{{ fertilizer }}</p>
+                        <h5 class="card-title">Maturity Time: </h5>
+                        <p class="card-text">{{ crop_info_1.maturation_time|safe }}</p>
+                        <p class="card-text">{{ crop_info_2.maturation_time|safe }}</p>
+                        <p class="card-text">{{ crop_info_3.maturation_time|safe }}</p>
                     </div>
                 </div>
                 <div class="card flex-fill">
                     <div class="card-body">
-                        <h5 class="card-title">Best Practices:</h5>
-                        <p class="card-text">{{ best_practice }}</p>
+                        <h5 class="card-title">Feasibility:</h5>
+                        <p class="card-text">{{ crop_info_1.feasibility|safe }}</p>
+                        <p class="card-text">{{ crop_info_2.feasibility|safe }}</p>
+
+                        <p class="card-text">{{ crop_info_3.feasibility|safe }}</p>
+
                     </div>
                 </div>
                 
