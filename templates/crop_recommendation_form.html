@@ -3,121 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agricultural Work Plan and Crop Recommendation</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Crop Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"], .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-        <h1 class="text-2xl font-bold mb-6">Agricultural Work Plan and Crop Recommendation</h1>
-        <form method="POST" action="{% url 'cropRecommendation' %}">
+<body>
+    <div class="container">
+        <h2>Crop Recommendation Form</h2>
+        <form method="POST">
             {% csrf_token %}
-            
-            <!-- Previous Crops -->
-            <div class="mb-4">
-                <label for="former_crop" class="block text-gray-700 font-semibold mb-2">Previous Crop 1:</label>
-                <input type="text" id="former_crop" name="former_crop" required
-                       class="w-full p-2 border border-gray-300 rounded">
+            <div class="form-group">
+                <label for="nitrogen">Nitrogen (N) Content (0-300 mg/kg):</label>
+                <input type="number" id="nitrogen" name="nitrogen" min="0" max="300" required>
             </div>
-
-            <div class="mb-4">
-                <label for="former_crop2" class="block text-gray-700 font-semibold mb-2">Previous Crop 2:</label>
-                <input type="text" id="former_crop2" name="former_crop2"
-                       class="w-full p-2 border border-gray-300 rounded">
+            <div class="form-group">
+                <label for="phosphorus">Phosphorus (P) Content (0-300 mg/kg):</label>
+                <input type="number" id="phosphorus" name="phosphorus" min="0" max="300" required>
             </div>
-
-            <div class="mb-4">
-                <label for="former_crop3" class="block text-gray-700 font-semibold mb-2">Previous Crop 3:</label>
-                <input type="text" id="former_crop3" name="former_crop3"
-                       class="w-full p-2 border border-gray-300 rounded">
+            <div class="form-group">
+                <label for="potassium">Potassium (K) Content (0-300 mg/kg):</label>
+                <input type="number" id="potassium" name="potassium" min="0" max="300" required>
             </div>
-
-            <!-- Past Farming Practices -->
-            <div class="mb-4">
-                <label for="description" class="block text-gray-700 font-semibold mb-2">Past Farming Practices:</label>
-                <textarea id="description" name="description" rows="4" cols="50"
-                          class="w-full p-2 border border-gray-300 rounded"></textarea>
+            <div class="form-group">
+                <label for="temperature">Temperature (°C) (0-60):</label>
+                <input type="number" id="temperature" name="temperature" min="0" max="60" required>
             </div>
-
-            <!-- Auto-filled Weather Information -->
-            <div class="mb-4">
-                <label for="temperature" class="block text-gray-700 font-semibold mb-2">Temperature (°C):</label>
-                <input type="number" id="temperature" name="temperature" step="1" required
-                       class="w-full p-2 border border-gray-300 rounded">
+            <div class="form-group">
+                <label for="humidity">Humidity (%) (0-100):</label>
+                <input type="number" id="humidity" name="humidity" min="0" max="100" required>
             </div>
-
-            <div class="mb-4">
-                <label for="rainfall" class="block text-gray-700 font-semibold mb-2">Rainfall (mm):</label>
-                <input type="number" id="rainfall" name="rainfall" step="1" required
-                       class="w-full p-2 border border-gray-300 rounded">
+            <div class="form-group">
+                <label for="ph">pH Level (0-14):</label>
+                <input type="number" id="ph" name="ph" min="0" max="14" step="0.01" required>
             </div>
-
-            <!-- Soil Nutrients -->
-            <div class="mb-4">
-                <label for="nitrogen" class="block text-gray-700 font-semibold mb-2">Nitrogen (kg/ha):</label>
-                <input type="number" id="nitrogen" name="nitrogen" step="1" required
-                       class="w-full p-2 border border-gray-300 rounded">
+            <div class="form-group">
+                <label for="rainfall">Rainfall (mm) (0-2000):</label>
+                <input type="number" id="rainfall" name="rainfall" min="0" max="2000" required>
             </div>
-
-            <div class="mb-4">
-                <label for="phosphorus" class="block text-gray-700 font-semibold mb-2">Phosphorus (kg/ha):</label>
-                <input type="number" id="phosphorus" name="phosphorus" step="1" required
-                       class="w-full p-2 border border-gray-300 rounded">
+            <div class="form-group">
+                <label for="former_crop">Former Crop 1:</label>
+                <input type="text" id="former_crop" name="former_crop" required>
             </div>
-
-            <div class="mb-4">
-                <label for="potassium" class="block text-gray-700 font-semibold mb-2">Potassium (kg/ha):</label>
-                <input type="number" id="potassium" name="potassium" step="1" required
-                       class="w-full p-2 border border-gray-300 rounded">
+            <div class="form-group">
+                <label for="former_crop2">Former Crop 2:</label>
+                <input type="text" id="former_crop2" name="former_crop2" required>
             </div>
-
-            <div class="mb-4">
-                <label for="ph" class="block text-gray-700 font-semibold mb-2">Soil pH:</label>
-                <input type="number" id="ph" name="ph" step="1" required
-                       class="w-full p-2 border border-gray-300 rounded">
+            <div class="form-group">
+                <label for="former_crop3">Former Crop 3:</label>
+                <input type="text" id="former_crop3" name="former_crop3" required>
             </div>
-
-            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded font-semibold hover:bg-blue-600">
-                Get Recommendations
-            </button>
+            <div class="form-group">
+                <label for="description">Past Practices:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Get Crop Recommendations</button>
+            </div>
         </form>
     </div>
-    <script>
-        // Function to set a fixed rainfall value
-        function setFixedRainfall() {
-            const fixedRainfall = 780; // Fixed rainfall value in mm
-            document.getElementById('rainfall').value = fixedRainfall.toFixed(2);
-        }
-    
-        // Function to get temperature data using the original API
-        function getTemperature(lat, lon) {
-            const originalApiKey = '3266f0c646864f02a83152630243108'; // Replace with your original API key
-            const originalApiUrl = `http://api.weatherapi.com/v1/current.json?key=${originalApiKey}&q=${lat},${lon}`;
-    
-            fetch(originalApiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Update temperature field
-                    document.getElementById('temperature').value = data.current.temp_c;
-                })
-                .catch(error => console.error('Error fetching temperature data:', error));
-        }
-    
-        // Get user's location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                position => {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    setFixedRainfall(); // Set the fixed rainfall value
-                    getTemperature(lat, lon); // Fetch temperature using the original API
-                },
-                error => console.error('Error getting location:', error)
-            );
-        } else {
-            console.error('Geolocation is not supported by this browser.');
-        }
-    </script>
-    
-
 </body>
 </html>
