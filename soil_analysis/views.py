@@ -8,6 +8,7 @@ import google.generativeai as genai
 import numpy as np
 import pickle
 import dotenv
+import re
 from django.http import JsonResponse
 from sklearn.ensemble import RandomForestClassifier 
 import base64
@@ -255,49 +256,52 @@ def work_plan(request):
 
     # Construct the prompt with former crops and past practices
     prompt = f"""
-    You are an expert agronomist specializing in sustainable and profitable farming practices in India.
+        You are an expert agronomist specializing in sustainable and profitable farming practices in India.
 
-    Based on the following information, create a comprehensive and detailed agricultural work plan:
+        Based on the following information, create a comprehensive and detailed agricultural work plan:
 
-    **Current Cropping Details:**
-    - Previous Crops: {fcrop1}, {fcrop2}, {fcrop3}
-    - Past Farming Practices: {past_practices}
+        **Current Cropping Details:**
+        - Previous Crops: {fcrop1}, {fcrop2}, {fcrop3}
+        - Past Farming Practices: {past_practices}
 
-    **Soil and Environmental Conditions:**
-    - Nitrogen Level: {soil_data['nitrogen']} mg/kg
-    - Phosphorus Level: {soil_data['phosphorus']} mg/kg
-    - Potassium Level: {soil_data['potassium']} mg/kg
-    - Temperature: {soil_data['temperature']}°C
-    - Humidity: {soil_data['humidity']}%
-    - pH Level: {soil_data['ph']}
-    - Rainfall: {soil_data['rainfall']} mm/year
+        **Soil and Environmental Conditions:**
+        - Nitrogen Level: {soil_data['nitrogen']} mg/kg
+        - Phosphorus Level: {soil_data['phosphorus']} mg/kg
+        - Potassium Level: {soil_data['potassium']} mg/kg
+        - Temperature: {soil_data['temperature']}°C
+        - Humidity: {soil_data['humidity']}%
+        - pH Level: {soil_data['ph']}
+        - Rainfall: {soil_data['rainfall']} mm/year
 
-    **Recommended Crops for Transition:**
-    - Primary Target Crop: {crop_recommendations[0]}
-    - Secondary Crops: {', '.join(crop_recommendations[1:]) if len(crop_recommendations) > 1 else 'N/A'}
+        **Recommended Crops for Transition:**
+        - Primary Target Crop: {crop_recommendations[0]}
+        - Secondary Crops: {', '.join(crop_recommendations[1:]) if len(crop_recommendations) > 1 else 'N/A'}
 
-    **Work Plan Requirements:**
-    - Develop a gradual transition plan from the existing crops to the recommended crops over appropriate timeframes.
-    - Include detailed strategies for soil building and improvement, including specific techniques and amendments.
-    - Outline methods for maximizing profits during and after the transition, considering market trends and crop demands.
-    - Suggest simultaneous planting schemes that allow for effective and efficient transition while minimizing risks.
-    - Provide seasonal schedules, resource requirements, and risk mitigation strategies.
-    - Structure the plan into clear sections with headings and subheadings for easy understanding.
+        **Work Plan Requirements:**
+        - Develop a gradual transition plan from the existing crops to the recommended crops over appropriate timeframes.
+        - Include detailed strategies for soil building and improvement, including specific techniques and amendments.
+        - Outline methods for maximizing profits during and after the transition, considering market trends and crop demands.
+        - Suggest simultaneous planting schemes that allow for effective and efficient transition while minimizing risks.
+        - Provide seasonal schedules, resource requirements, and risk mitigation strategies.
+        - Structure the plan into clear sections with headings and subheadings for easy understanding.
+        - Estimate the costs associated with each part of the plan and provide a total estimated cost at the end.
 
-    **Format:**
-    Present the work plan in a structured format with sections such as:
-    1. Introduction
-    2. Soil Analysis and Improvement Strategies
-    3. Transition Plan Overview
-    4. Detailed Crop Transition Schedule
-    5. Profit Maximization Strategies
-    6. Simultaneous Planting Schemes
-    7. Resource and Labor Management
-    8. Risk Assessment and Mitigation
-    9. Conclusion
+        **Format:**
+        Present the work plan in a structured format with sections such as:
+        1. Introduction
+        2. Soil Analysis and Improvement Strategies
+        3. Transition Plan Overview
+        4. Detailed Crop Transition Schedule
+        5. Profit Maximization Strategies
+        6. Simultaneous Planting Schemes
+        7. Resource and Labor Management
+        8. Risk Assessment and Mitigation
+        9. Conclusion
+        10. Estimated Costs
 
-    Ensure that each section contains detailed and actionable information tailored to the provided conditions and requirements. Use clear and professional language suitable for implementation by farmers and agricultural planners. Make sure to give appropriate spacing between sections, and don't ask the farmer to do research on trends or anything; you are supposed to be the solution, so you must give a suggestion. No disclaimers are allowed, and also format the text using HTML tags such as <br> and <b>.
-    """
+        Ensure that each section contains detailed and actionable information tailored to the provided conditions and requirements. Use clear and professional language suitable for implementation by farmers and agricultural planners. After the conclusion, provide a total estimated cost that will be required per year for the entire plan. Make sure to give appropriate spacing between sections, and don't ask the farmer to do research on trends or anything; you are supposed to be the solution, so you must give a suggestion. No disclaimers are allowed, and also format the text using HTML tags such as <br> and <b>.
+        """
+
 
     # Generate the work plan content
     work_plan_content = generate_content(prompt, api_key)
@@ -314,19 +318,18 @@ def work_plan(request):
 
     # Render the template with the generated content
     return render(request, 'work_plan_template.html', context)
+
+
 def soil_analysis(request):
     if request.method == 'POST':
-        # Handle the uploaded PDF file
         uploaded_file = request.FILES['soil_report']
         temp_dir = 'temp'
         pdf_path = os.path.join(temp_dir, uploaded_file.name)
         
-        # Save the uploaded PDF file
         with open(pdf_path, 'wb+') as destination:
             for chunk in uploaded_file.chunks():
                 destination.write(chunk)
         
-        # Extract text from the PDF
         try:
             soil_report_text = extract_text_from_pdf(pdf_path)
         except Exception as e:
@@ -334,20 +337,14 @@ def soil_analysis(request):
         
         api_key = os.getenv("GOOGLE_API_KEY")
         try:
-            # Configure the API client
             genai.configure(api_key=api_key)
-            
-            # Initialize the GenerativeModel
             model = genai.GenerativeModel('gemini-1.5-flash')
-            
-            # Generate content using the model
             response = model.generate_content(
                 f"Assume you are an expert in soil science and you have been asked to analyze the following soil report: {soil_report_text}. "
                 f"Provide a detailed analysis and recommendations for improving soil health based on the provided report. "
                 f"Return the text in a human understandable language, suitable for a farmer, without any special characters such as # /n or ** in the response."
             )
             
-            # Extract the generated text from the response
             candidates = getattr(response, 'candidates', [])
             if candidates:
                 candidate = candidates[0]
@@ -360,21 +357,26 @@ def soil_analysis(request):
             else:
                 generated_text = 'No candidates found in the response'
             
-            # Prepare context for the response
+            # Format the generated text
+            formatted_text = format_generated_text(generated_text)
+            
             context = {
-                'generated_text': generated_text,
+                'generated_text': formatted_text,
                 'soil_report_text': soil_report_text
             }
-            return render(request, 'pdf.html', context)
+            
+            # Render the PDF and automatically download it
+            pdf = render_to_pdf('pdf_template.html', context, 'Soil_Analysis_Report.pdf')
+            if pdf:
+                return pdf
+            return HttpResponse("Failed to generate PDF.", status=500)
         
         except Exception as e:
             return render(request, 'pdf.html', {'error': str(e)})
         
         finally:
-            # Cleanup temp file
             if os.path.exists(pdf_path):
                 os.remove(pdf_path)
     
     return render(request, 'pdf1.html')
-
 
