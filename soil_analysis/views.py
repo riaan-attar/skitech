@@ -124,7 +124,10 @@ def crop_recommendation(request):
             humidity = float(request.POST.get('humidity', 0))
             ph = float(request.POST.get('ph', 0))
             rainfall = float(request.POST.get('rainfall', 0))
-
+            fcrop1 = request.POST.get('former_crop')
+            fcrop2 = request.POST.get('former_crop2')
+            fcrop3 = request.POST.get('former_crop3')
+            past_practices = request.POST.get('description')
             # Constraints for the input values
             if not (0 <= nitrogen <= 300 and 0 <= phosphorus <= 300 and 0 <= potassium <= 300 and
                     0 <= temperature <= 60 and 0 <= humidity <= 100 and 0 <= ph <= 14 and
@@ -151,15 +154,20 @@ def crop_recommendation(request):
             request.session['humidity'] = humidity
             request.session['ph'] = ph
             request.session['rainfall'] = rainfall
+            request.session['fcrop1'] = fcrop1
+            request.session['fcrop2'] = fcrop2
+            request.session['fcrop3'] = fcrop3
+            request.session['past_practices'] = past_practices
+
     
             
             prompts = {
                 "maturation1": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a rough maturation period of {crop_1} in one line, strictly avoid use of special characters such as \\n or ##.",
                 "maturation2": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a rough maturation period of {crop_2} in one line, strictly avoid use of special characters such as \\n or ##.",
                 "maturation3": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a rough maturation period of {crop_3} in one line, strictly avoid use of special characters such as \\n or ##.",
-                "feasibility1": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a brief feasibility analysis of {crop_1}, strictly avoid use of special characters such as \\n or ##.",
-                "feasibility2": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a brief feasibility analysis of {crop_2}, strictly avoid use of special characters such as \\n or ##.",
-                "feasibility3": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a brief feasibility analysis of {crop_3}, strictly avoid use of special characters such as \\n or ##.",
+                "feasibility1": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a brief feasibility analysis of {crop_1}in 3 to 4 sentences, strictly avoid use of special characters such as \\n or ##.",
+                "feasibility2": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a brief feasibility analysis of {crop_2}in 3 to 4 sentences, strictly avoid use of special characters such as \\n or ##.",
+                "feasibility3": f"Assume you are an expert in Agriculture specializing in Indian agriculture. Provide a brief feasibility analysis of {crop_3}in 3 to 4 sentences, strictly avoid use of special characters such as \\n or ##.",
             }
 
             # Fetch content for each crop
@@ -223,99 +231,89 @@ from .utils import generate_content, api_key
 from .utils import render_to_pdf  # Ensure this import matches your project structure
 
 def work_plan(request):
-    if request.method == 'POST':
-        # Retrieve form data
-        fcrop1 = request.POST.get('former_crop')
-        fcrop2 = request.POST.get('former_crop2')
-        fcrop3 = request.POST.get('former_crop3')
-        past_practices = request.POST.get('description')
+    # Retrieve form data from session
+    fcrop1 = request.session.get('fcrop1')
+    fcrop2 = request.session.get('fcrop2')
+    fcrop3 = request.session.get('fcrop3')
+    past_practices = request.session.get('past_practices')
+    
+    # Retrieve session data
+    crop_recommendations = request.session.get('best_crops', [])
+    soil_data = {
+        'nitrogen': request.session.get('nitrogen'),
+        'phosphorus': request.session.get('phosphorus'),
+        'potassium': request.session.get('potassium'),
+        'temperature': request.session.get('temperature'),
+        'humidity': request.session.get('humidity'),
+        'ph': request.session.get('ph'),
+        'rainfall': request.session.get('rainfall'),
+    }
 
-        # Retrieve session data
-        crop_recommendations = request.session.get('best_crops', [])
-        soil_data = {
-            'nitrogen': request.session.get('nitrogen'),
-            'phosphorus': request.session.get('phosphorus'),
-            'potassium': request.session.get('potassium'),
-            'temperature': request.session.get('temperature'),
-            'humidity': request.session.get('humidity'),
-            'ph': request.session.get('ph'),
-            'rainfall': request.session.get('rainfall'),
-        }
+    # Ensure required data is available
+    if len(crop_recommendations) < 1 or not all(soil_data.values()):
+        return HttpResponse("Required data is missing.", status=400)
 
-        # Ensure required data is available
-        if len(crop_recommendations) < 1 or not all(soil_data.values()):
-            return HttpResponse("Required data is missing.", status=400)
+    # Construct the prompt with former crops and past practices
+    prompt = f"""
+    You are an expert agronomist specializing in sustainable and profitable farming practices in India.
 
-        # Construct the prompt
-        prompt = f"""
-        You are an expert agronomist specializing in sustainable and profitable farming practices in India.
+    Based on the following information, create a comprehensive and detailed agricultural work plan:
 
-        Based on the following information, create a comprehensive and detailed agricultural work plan:
+    **Current Cropping Details:**
+    - Previous Crops: {fcrop1}, {fcrop2}, {fcrop3}
+    - Past Farming Practices: {past_practices}
 
-        **Current Cropping Details:**
-        - Previous Crops: {fcrop1}, {fcrop2}, {fcrop3}
-        - Past Farming Practices: {past_practices}
+    **Soil and Environmental Conditions:**
+    - Nitrogen Level: {soil_data['nitrogen']} mg/kg
+    - Phosphorus Level: {soil_data['phosphorus']} mg/kg
+    - Potassium Level: {soil_data['potassium']} mg/kg
+    - Temperature: {soil_data['temperature']}°C
+    - Humidity: {soil_data['humidity']}%
+    - pH Level: {soil_data['ph']}
+    - Rainfall: {soil_data['rainfall']} mm/year
 
-        **Soil and Environmental Conditions:**
-        - Nitrogen Level: {soil_data['nitrogen']} mg/kg
-        - Phosphorus Level: {soil_data['phosphorus']} mg/kg
-        - Potassium Level: {soil_data['potassium']} mg/kg
-        - Temperature: {soil_data['temperature']}°C
-        - Humidity: {soil_data['humidity']}%
-        - pH Level: {soil_data['ph']}
-        - Rainfall: {soil_data['rainfall']} mm/year
+    **Recommended Crops for Transition:**
+    - Primary Target Crop: {crop_recommendations[0]}
+    - Secondary Crops: {', '.join(crop_recommendations[1:]) if len(crop_recommendations) > 1 else 'N/A'}
 
-        **Recommended Crops for Transition:**
-        - Primary Target Crop: {crop_recommendations[0]}
-        - Secondary Crops: {', '.join(crop_recommendations[1:]) if len(crop_recommendations) > 1 else 'N/A'}
+    **Work Plan Requirements:**
+    - Develop a gradual transition plan from the existing crops to the recommended crops over appropriate timeframes.
+    - Include detailed strategies for soil building and improvement, including specific techniques and amendments.
+    - Outline methods for maximizing profits during and after the transition, considering market trends and crop demands.
+    - Suggest simultaneous planting schemes that allow for effective and efficient transition while minimizing risks.
+    - Provide seasonal schedules, resource requirements, and risk mitigation strategies.
+    - Structure the plan into clear sections with headings and subheadings for easy understanding.
 
-        **Work Plan Requirements:**
-        - Develop a gradual transition plan from the existing crops to the recommended crops over appropriate timeframes.
-        - Include detailed strategies for soil building and improvement, including specific techniques and amendments.
-        - Outline methods for maximizing profits during and after the transition, considering market trends and crop demands.
-        - Suggest simultaneous planting schemes that allow for effective and efficient transition while minimizing risks.
-        - Provide seasonal schedules, resource requirements, and risk mitigation strategies.
-        - Structure the plan into clear sections with headings and subheadings for easy understanding.
+    **Format:**
+    Present the work plan in a structured format with sections such as:
+    1. Introduction
+    2. Soil Analysis and Improvement Strategies
+    3. Transition Plan Overview
+    4. Detailed Crop Transition Schedule
+    5. Profit Maximization Strategies
+    6. Simultaneous Planting Schemes
+    7. Resource and Labor Management
+    8. Risk Assessment and Mitigation
+    9. Conclusion
 
-        **Format:**
-        Present the work plan in a structured format with sections such as:
-        1. Introduction
-        2. Soil Analysis and Improvement Strategies
-        3. Transition Plan Overview
-        4. Detailed Crop Transition Schedule
-        5. Profit Maximization Strategies
-        6. Simultaneous Planting Schemes
-        7. Resource and Labor Management
-        8. Risk Assessment and Mitigation
-        9. Conclusion
+    Ensure that each section contains detailed and actionable information tailored to the provided conditions and requirements. Use clear and professional language suitable for implementation by farmers and agricultural planners. Make sure to give appropriate spacing between sections, and don't ask the farmer to do research on trends or anything; you are supposed to be the solution, so you must give a suggestion. No disclaimers are allowed, and also format the text using HTML tags such as <br> and <b>.
+    """
 
-        Ensure that each section contains detailed and actionable information tailored to the provided conditions and requirements. Use clear and professional language suitable for implementation by farmers and agricultural planners.
-        make sure to give appropraite spacing in between sections , and dont ask farme to do research on trends or anything you are supposed to be solution so you must give a suggestion,no disclaimer strictly,also format the the text using html tags such as new line and bold tags.
-        """
+    # Generate the work plan content
+    work_plan_content = generate_content(prompt, api_key)
 
-        # Generate the work plan content
-        work_plan_content = generate_content(prompt, api_key)
+    if not work_plan_content:
+        return HttpResponse("Failed to generate work plan content.", status=500)
 
-        if not work_plan_content:
-            return HttpResponse("Failed to generate work plan content.", status=500)
+    # Prepare the context for rendering the template
+    context = {
+        'work_plan_content': work_plan_content,
+        'current_date': datetime.now().strftime("%B %d, %Y"),
+        'current_year': datetime.now().year,
+    }
 
-        # Generate PDF from the content
-        context = {
-            'work_plan_content': work_plan_content,
-            'current_date': datetime.now().strftime("%B %d, %Y"),
-            'current_year': datetime.now().year,
-        }
-        pdf_file = render_to_pdf('work_plan_template.html', context, request)
-
-        if pdf_file:
-            response = HttpResponse(pdf_file, content_type='application/pdf')
-            response['Content-Disposition'] = 'attachment; filename="Agricultural_Work_Plan.pdf"'
-            return response
-        else:
-            return HttpResponse("Error generating PDF.", status=500)
-
-    else:
-        return render(request, 'work_plan_form.html')
+    # Render the template with the generated content
+    return render(request, 'work_plan_template.html', context)
 def soil_analysis(request):
     if request.method == 'POST':
         # Handle the uploaded PDF file

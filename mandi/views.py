@@ -25,18 +25,18 @@ def mandi(request):
     # Check if the request is a POST request
     if request.method == 'POST':
         # Get the filter values from the POST data
-        filter_state = request.POST.get('state', '').strip()
-        filter_district = request.POST.get('district', '').strip()
-        filter_market = request.POST.get('mandi', '').strip()
-        filter_commodity = request.POST.get('commodity', '').strip()
+        state = request.POST.get('state', '').strip()
+        district = request.POST.get('district', '').strip()
+        market = request.POST.get('mandi', '').strip()
+        commodity = request.POST.get('commodity', '').strip()
 
         # Validate inputs
-        if not all([filter_state, filter_district, filter_market, filter_commodity]):
+        if not all([state, district, market,commodity]):
             return HttpResponse("All filter fields are required.")
 
         # Base API URL
         base_url = "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070"
-        api_key = os.getenv('MANDI_API_KEY')
+        api_key = os.getenv('api_key1')
 
         if not api_key:
             return HttpResponse("API key is missing.")
@@ -62,10 +62,10 @@ def mandi(request):
             context.update({
                 'records': records,
                 'record_count': len(records),
-                'filter_state': filter_state,
-                'filter_district': filter_district,
-                'filter_market': filter_market,
-                'filter_commodity': filter_commodity,
+                'filter_state': state,
+                'filter_district': district,
+                'filter_market': market,
+                'filter_commodity': commodity,
             })
 
         except requests.exceptions.RequestException as e:
