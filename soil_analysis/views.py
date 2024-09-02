@@ -256,49 +256,52 @@ def work_plan(request):
 
     # Construct the prompt with former crops and past practices
     prompt = f"""
-    You are an expert agronomist specializing in sustainable and profitable farming practices in India.
+        You are an expert agronomist specializing in sustainable and profitable farming practices in India.
 
-    Based on the following information, create a comprehensive and detailed agricultural work plan:
+        Based on the following information, create a comprehensive and detailed agricultural work plan:
 
-    **Current Cropping Details:**
-    - Previous Crops: {fcrop1}, {fcrop2}, {fcrop3}
-    - Past Farming Practices: {past_practices}
+        **Current Cropping Details:**
+        - Previous Crops: {fcrop1}, {fcrop2}, {fcrop3}
+        - Past Farming Practices: {past_practices}
 
-    **Soil and Environmental Conditions:**
-    - Nitrogen Level: {soil_data['nitrogen']} mg/kg
-    - Phosphorus Level: {soil_data['phosphorus']} mg/kg
-    - Potassium Level: {soil_data['potassium']} mg/kg
-    - Temperature: {soil_data['temperature']}°C
-    - Humidity: {soil_data['humidity']}%
-    - pH Level: {soil_data['ph']}
-    - Rainfall: {soil_data['rainfall']} mm/year
+        **Soil and Environmental Conditions:**
+        - Nitrogen Level: {soil_data['nitrogen']} mg/kg
+        - Phosphorus Level: {soil_data['phosphorus']} mg/kg
+        - Potassium Level: {soil_data['potassium']} mg/kg
+        - Temperature: {soil_data['temperature']}°C
+        - Humidity: {soil_data['humidity']}%
+        - pH Level: {soil_data['ph']}
+        - Rainfall: {soil_data['rainfall']} mm/year
 
-    **Recommended Crops for Transition:**
-    - Primary Target Crop: {crop_recommendations[0]}
-    - Secondary Crops: {', '.join(crop_recommendations[1:]) if len(crop_recommendations) > 1 else 'N/A'}
+        **Recommended Crops for Transition:**
+        - Primary Target Crop: {crop_recommendations[0]}
+        - Secondary Crops: {', '.join(crop_recommendations[1:]) if len(crop_recommendations) > 1 else 'N/A'}
 
-    **Work Plan Requirements:**
-    - Develop a gradual transition plan from the existing crops to the recommended crops over appropriate timeframes.
-    - Include detailed strategies for soil building and improvement, including specific techniques and amendments.
-    - Outline methods for maximizing profits during and after the transition, considering market trends and crop demands.
-    - Suggest simultaneous planting schemes that allow for effective and efficient transition while minimizing risks.
-    - Provide seasonal schedules, resource requirements, and risk mitigation strategies.
-    - Structure the plan into clear sections with headings and subheadings for easy understanding.
+        **Work Plan Requirements:**
+        - Develop a gradual transition plan from the existing crops to the recommended crops over appropriate timeframes.
+        - Include detailed strategies for soil building and improvement, including specific techniques and amendments.
+        - Outline methods for maximizing profits during and after the transition, considering market trends and crop demands.
+        - Suggest simultaneous planting schemes that allow for effective and efficient transition while minimizing risks.
+        - Provide seasonal schedules, resource requirements, and risk mitigation strategies.
+        - Structure the plan into clear sections with headings and subheadings for easy understanding.
+        - Estimate the costs associated with each part of the plan and provide a total estimated cost at the end.
 
-    **Format:**
-    Present the work plan in a structured format with sections such as:
-    1. Introduction
-    2. Soil Analysis and Improvement Strategies
-    3. Transition Plan Overview
-    4. Detailed Crop Transition Schedule
-    5. Profit Maximization Strategies
-    6. Simultaneous Planting Schemes
-    7. Resource and Labor Management
-    8. Risk Assessment and Mitigation
-    9. Conclusion
+        **Format:**
+        Present the work plan in a structured format with sections such as:
+        1. Introduction
+        2. Soil Analysis and Improvement Strategies
+        3. Transition Plan Overview
+        4. Detailed Crop Transition Schedule
+        5. Profit Maximization Strategies
+        6. Simultaneous Planting Schemes
+        7. Resource and Labor Management
+        8. Risk Assessment and Mitigation
+        9. Conclusion
+        10. Estimated Costs
 
-    Ensure that each section contains detailed and actionable information tailored to the provided conditions and requirements. Use clear and professional language suitable for implementation by farmers and agricultural planners. Make sure to give appropriate spacing between sections, and don't ask the farmer to do research on trends or anything; you are supposed to be the solution, so you must give a suggestion. No disclaimers are allowed, and also format the text using HTML tags such as <br> and <b>.
-    """
+        Ensure that each section contains detailed and actionable information tailored to the provided conditions and requirements. Use clear and professional language suitable for implementation by farmers and agricultural planners. After the conclusion, provide a total estimated cost that will be required per year for the entire plan. Make sure to give appropriate spacing between sections, and don't ask the farmer to do research on trends or anything; you are supposed to be the solution, so you must give a suggestion. No disclaimers are allowed, and also format the text using HTML tags such as <br> and <b>.
+        """
+
 
     # Generate the work plan content
     work_plan_content = generate_content(prompt, api_key)

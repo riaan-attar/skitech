@@ -207,9 +207,55 @@ import re
 def format_generated_text(generated_text):
     # Replace ** with <strong> and add new lines before and after bold text
     formatted_text = re.sub(r'\*\*(.*?)\*\*', r'<br><strong>\1</strong><br>', generated_text)
-    return formatted_text
+    
+    # Replace ### with a line break
     formatted_text = re.sub(r'###', '<br>', formatted_text)
+
+    # Format the Estimated Costs section dynamically
+    def format_cost_table(match):
+        # Extract the entire match content
+        table_content = match.group(1)
+
+        # Split each row by new lines, and then each cell by the pipe '|' symbol
+        rows = table_content.strip().split('\n')
+        formatted_rows = []
+        
+        for row in rows:
+            if row.strip():
+                columns = row.strip().split('|')
+                if len(columns) >= 2:
+                    section = columns[1].strip()
+                    cost = columns[2].strip()
+                    formatted_row = f'<tr><td style="border: 1px solid black; padding: 5px;">{section}</td>' \
+                                    f'<td style="border: 1px solid black; padding: 5px;">{cost}</td></tr>'
+                    formatted_rows.append(formatted_row)
+        
+        # Join all formatted rows to create the final HTML table
+        return '<table style="border-collapse: collapse; width: 100%;">' \
+               '<tr><th style="border: 1px solid black; padding: 5px;">Section</th>' \
+               '<th style="border: 1px solid black; padding: 5px;">Estimated Cost (INR) per Year</th></tr>' + \
+               ''.join(formatted_rows) + '</table>'
+
+    # Apply the dynamic formatting to the Estimated Costs section
+    formatted_text = re.sub(
+        r'10\. Estimated Costs\n\| Section \| Estimated Cost \(INR\) per Year \|\n(.+?)\n\|(.+?)\|',
+        lambda m: '<br><strong>10. Estimated Costs</strong><br>' + format_cost_table(m),
+        formatted_text,
+        flags=re.DOTALL
+    )
+    
+    # Format the Total Estimated Cost section
+    formatted_text = re.sub(
+        r'\| Total Estimated Cost \|\n\|(.+?)\|',
+        r'<br><strong>Total Estimated Cost</strong><br>'
+        r'<table style="border-collapse: collapse; width: 100%;">'
+        r'<tr><td style="border: 1px solid black; padding: 5px;">\1</td></tr>'
+        r'</table>',
+        formatted_text
+    )
+
     return formatted_text
+
 
 from django.template.loader import render_to_string
 from django.http import HttpResponse
