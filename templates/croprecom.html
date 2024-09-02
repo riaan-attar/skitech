@@ -456,17 +456,21 @@
           <p class="text-center">{{ potassium }} kg/ha</p>
         </div>
       </div>
-      <div class="text-center">
-        <a href="{% url 'cropRecommendation' %}" class="btn btn-primary">Get Recommendation</a>
-    </div>
-    
+      <div class="row">
+        <div class="col text-center">
+          <a href="{% url 'cropRecommendation' %}" class="btn btn-primary">Get Recommendation</a>
+        </div>
+        <div class="col text-center">
+          <a href="{% url 'cropRecommendation' %}" class="btn btn-primary">View work plan</a>
+        </div>
+      </div>
       <div class="container mt-4">
         <div class="row">
             <!-- First Column: Predicted Disease Image and Text -->
             <div class="col-md-6 d-flex align-items-stretch flex-column mb-3 mb-md-0">
                 <div class="card flex-fill">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <img src="data:image/jpeg;base64,{{ image }}" class="img-fluid mb-3">
+                        <!-- <img src="data:image/jpeg;base64,{{ image }}" class="img-fluid mb-3"> -->
                         <h5 class="card-title mb-3">Crop Name:{{ crop_info_1.crop | title }}</h5>
                         <h5 class="card-title mb-3">Crop Name:{{ crop_info_2.crop | title }}</h5>
                         <h5 class="card-title mb-3">Crop Name:{{ crop_info_3.crop | title }}</h5>
@@ -490,7 +494,6 @@
                         <h5 class="card-title">Feasibility:</h5>
                         <p class="card-text">{{ crop_info_1.feasibility|safe }}</p>
                         <p class="card-text">{{ crop_info_2.feasibility|safe }}</p>
-
                         <p class="card-text">{{ crop_info_3.feasibility|safe }}</p>
 
                     </div>

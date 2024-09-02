@@ -1,28 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agricultural Work Plan Form</title>
+    <title>Agricultural Work Plan & Crop Recommendation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Create an Agricultural Work Plan</h1>
-    <form method="POST" action="{% url 'work_plan' %}">
-        {% csrf_token %}
-        
-        <label for="former_crop">Previous Crop 1:</label>
-        <input type="text" id="former_crop" name="former_crop" required><br><br>
 
-        <label for="former_crop2">Previous Crop 2:</label>
-        <input type="text" id="former_crop2" name="former_crop2"><br><br>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-3xl mx-auto bg-white p-8 shadow-md rounded-lg">
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">Agricultural Work Plan & Crop Recommendation</h1>
+        <form method="POST" action="{% url 'work_plan' %}">
+            {% csrf_token %}
 
-        <label for="former_crop3">Previous Crop 3:</label>
-        <input type="text" id="former_crop3" name="former_crop3"><br><br>
+            <div class="mb-4">
+                <label for="former_crop" class="block text-gray-700 font-semibold">Previous Crop 1:</label>
+                <input type="text" id="former_crop" name="former_crop" required
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
 
-        <label for="description">Past Farming Practices:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+            <div class="mb-4">
+                <label for="former_crop2" class="block text-gray-700 font-semibold">Previous Crop 2:</label>
+                <input type="text" id="former_crop2" name="former_crop2"
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
 
-        <button type="submit">Generate Work Plan</button>
-    </form>
+            <div class="mb-4">
+                <label for="former_crop3" class="block text-gray-700 font-semibold">Previous Crop 3:</label>
+                <input type="text" id="former_crop3" name="former_crop3"
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+
+            <div class="mb-6">
+                <label for="description" class="block text-gray-700 font-semibold">Past Farming Practices:</label>
+                <textarea id="description" name="description" rows="4"
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="nitrogen" class="block text-gray-700 font-semibold">Nitrogen (kg/ha):</label>
+                <input type="number" step="0.01" name="nitrogen" id="nitrogen" required
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+
+            <div class="mb-4">
+                <label for="phosphorus" class="block text-gray-700 font-semibold">Phosphorus (kg/ha):</label>
+                <input type="number" step="0.01" name="phosphorus" id="phosphorus" required
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+
+            <div class="mb-4">
+                <label for="potassium" class="block text-gray-700 font-semibold">Potassium (kg/ha):</label>
+                <input type="number" step="0.01" name="potassium" id="potassium" required
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+
+            <div class="mb-4">
+                <label for="temperature" class="block text-gray-700 font-semibold">Temperature (°C):</label>
+                <input type="number" step="0.01" name="temperature" id="temperature" required
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+
+            <div class="mb-4">
+                <label for="humidity" class="block text-gray-700 font-semibold">Humidity (%):</label>
+                <input type="number" step="0.01" name="humidity" id="humidity" required
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+
+            <div class="mb-4">
+                <label for="ph" class="block text-gray-700 font-semibold">Soil pH:</label>
+                <input type="number" step="0.01" name="ph" id="ph" required
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+
+            <div class="mb-4">
+                <label for="rainfall" class="block text-gray-700 font-semibold">Rainfall (mm):</label>
+                <input type="number" step="0.01" name="rainfall" id="rainfall" required
+                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                Generate Work Plan & Get Recommendation
+            </button>
+        </form>
+    </div>
 </body>
+
 </html>

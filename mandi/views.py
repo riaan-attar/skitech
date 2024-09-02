@@ -44,7 +44,7 @@ def mandi(request):
         # Constructing the data URL without variety and grade filters
         data_url = (
                     f"https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070"
-                    f"?api-key=579b464db66ec23bdd0000010b3b218df49d48615ad89b16c36ad277"
+                    f"?api-key=579b464db66ec23bdd0000015a485d4cfa2e412d645f3021958e7456"
                     f"&format=json"
                     f"&filters%5Bstate.keyword%5D={state}"
                     f"&filters%5Bdistrict%5D={district}"
