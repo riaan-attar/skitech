@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <title>Crop Recommendation</title>
-    <style>
+    <!-- <style>
         body {
             font-family: Arial, sans-serif;
         }
@@ -49,61 +50,128 @@
         .form-group button:hover {
             background-color: #45a049;
         }
-    </style>
+    </style> -->
 </head>
-<body>
-    <div class="container">
-        <h2>Crop Recommendation Form</h2>
-        <form method="POST">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="container mx-auto p-6 bg-white rounded-lg shadow-md max-w-lg">
+        <h2 class="text-2xl font-bold mb-6 text-center">Crop Recommendation Form</h2>
+        <form method="POST" class="space-y-4">
             {% csrf_token %}
             <div class="form-group">
-                <label for="nitrogen">Nitrogen (N) Content (0-300 mg/kg):</label>
-                <input type="number" id="nitrogen" name="nitrogen" min="0" max="300" required>
+                <label for="nitrogen" class="block text-sm font-medium text-gray-700">Nitrogen (N) Content (0-300 mg/kg):</label>
+                <input type="number" id="nitrogen" name="nitrogen" min="0" max="300" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="phosphorus">Phosphorus (P) Content (0-300 mg/kg):</label>
-                <input type="number" id="phosphorus" name="phosphorus" min="0" max="300" required>
+                <label for="phosphorus" class="block text-sm font-medium text-gray-700">Phosphorus (P) Content (0-300 mg/kg):</label>
+                <input type="number" id="phosphorus" name="phosphorus" min="0" max="300" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="potassium">Potassium (K) Content (0-300 mg/kg):</label>
-                <input type="number" id="potassium" name="potassium" min="0" max="300" required>
+                <label for="potassium" class="block text-sm font-medium text-gray-700">Potassium (K) Content (0-300 mg/kg):</label>
+                <input type="number" id="potassium" name="potassium" min="0" max="300" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="temperature">Temperature (°C) (0-60):</label>
-                <input type="number" id="temperature" name="temperature" min="0" max="60" required>
+                <label for="temperature" class="block text-sm font-medium text-gray-700">Temperature (°C) (0-60):</label>
+                <input type="number" id="temperature" name="temperature" min="0" max="60" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="humidity">Humidity (%) (0-100):</label>
-                <input type="number" id="humidity" name="humidity" min="0" max="100" required>
+                <label for="humidity" class="block text-sm font-medium text-gray-700">Humidity (%) (0-100):</label>
+                <input type="number" id="humidity" name="humidity" min="0" max="100" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="ph">pH Level (0-14):</label>
-                <input type="number" id="ph" name="ph" min="0" max="14" step="0.01" required>
+                <label for="ph" class="block text-sm font-medium text-gray-700">pH Level (0-14):</label>
+                <input type="number" id="ph" name="ph" min="0" max="14" step="0.01" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="rainfall">Rainfall (mm) (0-2000):</label>
-                <input type="number" id="rainfall" name="rainfall" min="0" max="2000" required>
+                <label for="rainfall" class="block text-sm font-medium text-gray-700">Rainfall (mm) (0-2000):</label>
+                <input type="number" id="rainfall" name="rainfall" min="0" max="2000" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="former_crop">Former Crop 1:</label>
-                <input type="text" id="former_crop" name="former_crop" required>
+                <label for="former_crop" class="block text-sm font-medium text-gray-700">Former Crop 1:</label>
+                <input type="text" id="former_crop" name="former_crop" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="former_crop2">Former Crop 2:</label>
-                <input type="text" id="former_crop2" name="former_crop2" required>
+                <label for="former_crop2" class="block text-sm font-medium text-gray-700">Former Crop 2:</label>
+                <input type="text" id="former_crop2" name="former_crop2" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="former_crop3">Former Crop 3:</label>
-                <input type="text" id="former_crop3" name="former_crop3" required>
+                <label for="former_crop3" class="block text-sm font-medium text-gray-700">Former Crop 3:</label>
+                <input type="text" id="former_crop3" name="former_crop3" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="form-group">
-                <label for="description">Past Practices:</label>
-                <textarea id="description" name="description" rows="4" required></textarea>
+                <label for="description" class="block text-sm font-medium text-gray-700">Past Practices:</label>
+                <textarea id="description" name="description" rows="4" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
             </div>
             <div class="form-group">
-                <button type="submit">Get Crop Recommendations</button>
+                <button type="submit"
+                    class="w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Get Crop Recommendations
+                </button>
             </div>
         </form>
     </div>
 </body>
+    <script>
+        async function getSoilPh(lat, lon) {
+            const ambeeApiKey = '3b143ea0e73aea575826676d97525776b6f5ed20de7ea2018336171f07501af9';
+            const url = `https://api.ambeedata.com/latest/soil?lat=${lat}&lng=${lon}`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'x-api-key': ambeeApiKey,
+                        'Content-type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+    
+                if (data.data && data.data.length > 0) {
+                    const soilPh = data.data[0].soil_ph;
+                    document.getElementById('ph').value = soilPh.toFixed(2);
+                }
+            } catch (error) {
+                console.error('Error fetching soil pH data:', error);
+            }
+        }
+    
+        // Function to get temperature data using the original API
+        function getTemperature(lat, lon) {
+            const originalApiUrl = `http://api.weatherapi.com/v1/current.json?key=3266f0c646864f02a83152630243108&q=${lat},${lon}`;
+            
+            fetch(originalApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Update temperature field
+                    document.getElementById('temperature').value = data.current.temp_c;
+                })
+                .catch(error => console.error('Error fetching temperature data:', error));
+        }
+    
+        // Get user's location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    getSoilPh(lat, lon);     // Fetch soil pH using Ambee API
+                    getTemperature(lat, lon); // Fetch temperature using the original API
+                    document.getElementById('rainfall').value = 780; // Set rainfall to fixed value
+                },
+                error => console.error('Error getting location:', error)
+            );
+        } else {
+            console.error('Geolocation is not supported by this browser.');
+        }
+    </script>
 </html>
